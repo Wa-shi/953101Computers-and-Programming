@@ -1,3 +1,20 @@
+"A true society of wisdom begins when knowledge is no longer a secret. Equality starts with access to knowledge." 💡
+
+This repo was created to compile summaries and notes for our exam prep.
+I might not be the smartest, and these notes don't guarantee that I'll score higher than any of you.
+But I simply believe that "we don't need to gatekeep knowledge just to survive alone."
+
+I hope these summaries will be useful, save you some time, and help us all pass this course together.
+Best of luck with the exams. We've got this brooo!
+
+สังคมแห่งปัญญาที่แท้จริง เริ่มต้นจากการที่ความรู้ไม่ใช่ความลับ ความเท่าเทียมในการเข้าถึงความรู้ (( หล่อเฉยไรวะ ))" 💡
+Repo นี้สร้างขึ้นมาเพื่อรวบรวมสรุปและโน้ตต่างๆ สำหรับเตรียมสอบ Lab และ มิดเทอมนี้
+เราอาจจะไม่ได้เก่งที่สุด และสรุปนี้ก็ไม่ได้การันตีว่าฉันจะได้คะแนนมากกว่าพวกคุณ
+แต่ฉันแค่เชื่อว่า "เราไม่จำเป็นต้องกั๊กกันเพื่อรอดคนเดียว"
+หวังว่าสรุปนี้จะเป็นประโยชน์ ช่วยประหยัดเวลา และทำให้พวกเราผ่านวิชานี้ไปด้วยกันนะ
+
+ขอให้ทุกคนโชคดีกับการสอบ สู้ๆน้าเพื่อนๆ!
+
 # 📚 953101 Computers and Programming — Organized Labs & Exam Prep
 
 > **Course:** 953101 Computers and Programming (Java)  

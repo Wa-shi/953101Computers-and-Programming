@@ -1,0 +1,3524 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>SE101 Java Final Lab Exam Master Study Guide</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 14mm 14mm 14mm;
+    @bottom-right {
+      content: counter(page);
+      font-size: 8.5pt;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #64748b;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Leelawadee UI', Tahoma, 'Sarabun', sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    line-height: 1.55;
+    font-size: 9.5pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .no-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Cover Page */
+  .cover {
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: #0284c7;
+    color: white;
+    font-weight: bold;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 26pt;
+    color: #0f172a;
+    margin: 0 0 10px 0;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+  .cover h2 {
+    font-size: 16pt;
+    color: #0369a1;
+    font-weight: 600;
+    margin: 0 0 25px 0;
+  }
+  .cover-desc {
+    font-size: 11pt;
+    color: #475569;
+    max-width: 650px;
+    margin: 0 auto 30px auto;
+  }
+  .cover-meta {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 24px;
+    display: inline-block;
+    text-align: left;
+    font-size: 10pt;
+    color: #334155;
+  }
+  .cover-meta td { padding: 4px 12px; }
+
+  /* Section Headings */
+  h1.ch-header {
+    font-size: 17pt;
+    color: white;
+    background: linear-gradient(135deg, #1e3a8a, #0369a1);
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
+  h2.ch-sub {
+    font-size: 13pt;
+    color: #0f766e;
+    border-bottom: 2px solid #0f766e;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+  h3.file-title {
+    font-size: 11.5pt;
+    color: #1e3a8a;
+    background: #eff6ff;
+    border-left: 5px solid #2563eb;
+    padding: 8px 12px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Tags & Badges */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 8pt;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .badge-cat { background: #dbeafe; color: #1e40af; }
+  .badge-file { background: #f1f5f9; color: #475569; font-family: Consolas, monospace; }
+
+  /* Code Block Styling */
+  .code-container {
+    background: #0f172a;
+    color: #f8fafc;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin: 8px 0 12px 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    border: 1px solid #1e293b;
+  }
+
+  /* Info Cards */
+  .card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 0;
+  }
+  .card-logic { border-left: 4px solid #3b82f6; }
+  .card-trace { border-left: 4px solid #10b981; background: #f0fdf4; }
+  .card-variations { border-left: 4px solid #8b5cf6; background: #faf5ff; }
+  .card-pitfalls { border-left: 4px solid #ef4444; background: #fef2f2; }
+  .card-tip { border-left: 4px solid #f59e0b; background: #fffbeb; }
+
+  .card-header {
+    font-weight: 700;
+    font-size: 9.5pt;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+  }
+  .card-logic .card-header { color: #1d4ed8; }
+  .card-trace .card-header { color: #047857; }
+  .card-variations .card-header { color: #6d28d9; }
+  .card-pitfalls .card-header { color: #b91c1c; }
+  .card-tip .card-header { color: #b45309; }
+
+  /* Trace Preformatted */
+  .trace-box {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 8.2pt;
+    line-height: 1.35;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 8px 10px;
+    white-space: pre-wrap;
+    color: #1e293b;
+    margin-top: 4px;
+  }
+
+  /* Tables */
+  table.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 9pt;
+  }
+  table.custom-table th {
+    background: #1e3a8a;
+    color: white;
+    text-align: left;
+    padding: 6px 10px;
+    font-weight: 600;
+  }
+  table.custom-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  table.custom-table tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+
+  ul, ol {
+    margin: 4px 0 6px 18px;
+    padding: 0;
+  }
+  li { margin-bottom: 3px; }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 15px 0;
+  }
+  .toc-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 14px;
+  }
+  .toc-item h4 {
+    margin: 0 0 4px 0;
+    color: #1e3a8a;
+    font-size: 10pt;
+  }
+  .toc-item p {
+    margin: 0;
+    font-size: 8.5pt;
+    color: #64748b;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-badge">Course 953101 | SE & CS Computer Programming</div>
+  <h1>คู่มือสรุปเจาะลึกเตรียมสอบ Final Lab Exam (Java)</h1>
+  <h2>ครอบคลุมแล็บ Organized_Labs ทุกไฟล์ (36 ข้อ) + ทบทวนพื้นฐาน + ข้อสอบเก่า</h2>
+  <div class="cover-desc">
+    รวบรวมและวิเคราะห์โค้ดภาษา Java ครบทั้ง 6 แล็บ (Lab 06A, 07A, 10A, 10B, 11A, 11B)
+    พร้อมอธิบายหลักการทำงานทีละบรรทัด, ตาราง Trace ตัวแปร, โจทย์พลิกแพลงแบบต่างๆ, และกับดักข้อผิดพลาดในห้องสอบ
+  </div>
+  <table class="cover-meta" align="center">
+    <tr><td><b>วิชา:</b></td><td>953101 Computers and Programming (Java)</td></tr>
+    <tr><td><b>หลักสูตร:</b></td><td>Software Engineering (SE), College of Arts, Media and Technology</td></tr>
+    <tr><td><b>เนื้อหาที่ครอบคลุม:</b></td><td>While Loop, For Loop, Nested Loops, Value-Returning & Void Methods, 1D & 2D Arrays</td></tr>
+    <tr><td><b>จำนวนไฟล์โปรแกรม:</b></td><td>36 โปรแกรม (จาก Organized_Labs) + 3 Model Exam Solutions</td></tr>
+    <tr><td><b>จัดทำเพื่อ:</b></td><td>นักศึกษาเตรียมสอบ Final Lab Exam และ AI Agent เพื่อการตรวจสอบความถูกต้อง 100%</td></tr>
+  </table>
+</div>
+
+<div class="page-break"></div>
+
+<h1 class="ch-header">สารบัญเนื้อหา (Table of Contents)</h1>
+<div class="toc-grid">
+  <div class="toc-item">
+    <h4>บทที่ 0: ทบทวนพื้นฐาน Java ก่อนสอบ</h4>
+    <p>printf Specifiers (%2f, %4d, %-5d), if-else, Operators (%, ^, &&), Scanner Buffer</p>
+  </div>
+  <div class="toc-item">
+    <h4>บทที่ 1: While Loops (Lab 06A - 7 ข้อ)</h4>
+    <p>Trace, CountDown, SumUntilZero (Sentinel), InchToCm, Divisibility (XOR), GuessNumber, Calculator</p>
+  </div>
+  <div class="toc-item">
+    <h4>บทที่ 2: For Loops & Nested (Lab 07A - 7 ข้อ)</h4>
+    <p>Square Loop, Even/Odd Sums, Two-Variable Loop, Break/Continue, GCD, Primes, Centered Pyramid</p>
+  </div>
+  <div class="toc-item">
+    <h4>บทที่ 3: Methods Part 1 (Lab 10A - 5 ข้อ)</h4>
+    <p>Max Method, SumRange, TempConverter, Euclidean Distance, Triangle Classification</p>
+  </div>
+  <div class="toc-item">
+    <h4>บทที่ 4: Methods Part 2 (Lab 10B - 6 ข้อ)</h4>
+    <p>Pass-by-Value Mechanics, Modular GCD, isPrime Helper, Perfect Numbers, TextBox, MultiTable</p>
+  </div>
+  <div class="toc-item">
+    <h4>บทที่ 5: 1D Arrays (Lab 11A - 6 ข้อ)</h4>
+    <p>Array Indexing, Dynamic Input, Single-pass Stats, Linear Search, Filtering, In-place Reversal</p>
+  </div>
+  <div class="toc-item">
+    <h4>บทที่ 6: 2D Arrays (Lab 11B - 5 ข้อ)</h4>
+    <p>Matrix Coordinates, Resource-safe Input, Total & Row Sums, Row Maximums, 2D Early Exit Search</p>
+  </div>
+  <div class="toc-item">
+    <h4>บทที่ 7: เฉลยข้อสอบ Final Lab Exam</h4>
+    <p>Model Answers จากข้อสอบจริง: 1. Temp Stats 2. Shipping Cost 3. Weekly Rainfall Report</p>
+  </div>
+  <div class="toc-item" style="grid-column: span 2;">
+    <h4>บทที่ 8: Top 10 ข้อผิดพลาดร้ายแรงในห้องสอบ (Fatal Exam Pitfalls)</h4>
+    <p>เจาะลึก 10 จุดตัดคะแนน: Integer Division, Bounds Exception, Sentinel Order, String ==, Loop Semicolons</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+<h1 class="ch-header">บทที่ 0: ทบทวนพื้นฐาน Java สำหรับห้องสอบ (Basics & Syntax)</h1>
+<p>สรุปหัวใจสำคัญของพื้นฐานภาษา Java ที่โจทย์แล็บและข้อสอบนำมาใช้ผสมผสานกับ Loops, Methods และ Arrays</p>
+
+    <div class="no-break">
+      <h2 class="ch-sub">0.1 printf Format Specifiers (การจัดรูปแบบ Output)</h2>
+      <p>System.out.printf() ใช้จัดรูปแบบข้อความ ตัวเลขทศนิยม และการจัดระยะตาราง ซึ่งออกสอบในแทบทุกแล็บ</p>
+    <table class="custom-table"><thead><tr><th>Specifier</th><th>คำอธิบาย / ชนิดข้อมูล</th><th>ตัวอย่างโค้ด</th><th>ผลลัพธ์ที่ได้</th></tr></thead><tbody><tr><td>%d</td><td>จำนวนเต็ม (byte, short, int, long)</td><td>System.out.printf("Count: %d", 42);</td><td>Count: 42</td></tr><tr><td>%f</td><td>ทศนิยม (float, double) ค่าเริ่มต้น 6 ตำแหน่ง</td><td>System.out.printf("Val: %f", 3.14);</td><td>Val: 3.140000</td></tr><tr><td>%.2f</td><td>ทศนิยมปัดเศษเหลือ 2 ตำแหน่ง (พบบ่อยสุดในข้อสอบ)</td><td>System.out.printf("Avg: %.2f", 3.14159);</td><td>Avg: 3.14</td></tr><tr><td>%.1f</td><td>ทศนิยมปัดเศษเหลือ 1 ตำแหน่ง</td><td>System.out.printf("Temp: %.1f", 37.89);</td><td>Temp: 37.9</td></tr><tr><td>%5d</td><td>จำนวนเต็ม จัดขวา กว้างอย่างน้อย 5 ช่อง (เติมช่องว่างซ้าย)</td><td>System.out.printf("[%5d]", 7);</td><td>[    7]</td></tr><tr><td>%-5d</td><td>จำนวนเต็ม จัดซ้าย กว้างอย่างน้อย 5 ช่อง (เติมช่องว่างขวา)</td><td>System.out.printf("[%-5d]", 7);</td><td>[7    ]</td></tr><tr><td>%10.2f</td><td>ทศนิยมกว้างรวม 10 ช่อง (รวมจุด) ทศนิยม 2 ตำแหน่ง ชิดขวา</td><td>System.out.printf("[%10.2f]", 45.5);</td><td>[     45.50]</td></tr><tr><td>%-15s</td><td>String จัดชิดซ้าย กว้างอย่างน้อย 15 ช่อง (ใช้ทำหัวตาราง)</td><td>System.out.printf("%-15s", "Name");</td><td>Name           </td></tr><tr><td>%n หรือ \n</td><td>ขึ้นบรรทัดใหม่ (Platform-independent newline)</td><td>System.out.printf("Done%n");</td><td>Done (ขึ้นบรรทัดใหม่)</td></tr></tbody></table><div class="card card-tip"><div class="card-header">💡 คำแนะนำสำคัญ</div><b>กฎเหล็ก:</b> ใน printf เครื่องหมายเปอร์เซ็นต์ต้องตรงกับชนิดตัวแปร หากนำ double ไปใส่ใน %d จะเกิด <code>IllegalFormatConversionException</code> ทันที!</div></div>
+    <div class="no-break">
+      <h2 class="ch-sub">0.2 คำสั่งเงื่อนไข (if-else, Ternary Operator, switch-case)</h2>
+      <p>การตัดสินใจแยกสาขาการทำงานตามเงื่อนไขทางตรรกะ</p>
+    <b>if - else if - else (การตัดสินใจแบบช่วงชั้น)</b><div class="code-container">if (score &gt;= 80) {
+    grade = &quot;A&quot;;
+} else if (score &gt;= 70) {
+    grade = &quot;B&quot;;
+} else if (score &gt;= 60) {
+    grade = &quot;C&quot;;
+} else {
+    grade = &quot;F&quot;;
+}</div><b>Ternary Operator (if-else แบบย่อในบรรทัดเดียว)</b><div class="code-container">// รูปแบบ: (เงื่อนไข) ? ค่าถ้าจริง : ค่าถ้าเท็จ;
+String status = (age &gt;= 18) ? &quot;Adult&quot; : &quot;Minor&quot;;
+double cost = (isMember) ? price * 0.9 : price;
+int max = (a &gt; b) ? a : b;</div><b>switch-case (เลือกทำงานตามค่าคงที่)</b><div class="code-container">switch (choice) {
+    case 1:
+        System.out.println(&quot;Add&quot;);
+        break; // ห้ามลืม break!
+    case 2:
+        System.out.println(&quot;Subtract&quot;);
+        break;
+    default:
+        System.out.println(&quot;Invalid choice&quot;);
+        break;
+}</div><div class="card card-tip"><div class="card-header">💡 คำแนะนำสำคัญ</div><b>จุดระวัง:</b> ถ้าลืมใส่ <code>break;</code> ใน switch-case โปรแกรมจะไหลทะลุไปทำงานใน case ถัดไปเรื่อยๆ เรียกว่า <i>Fall-through bug</i></div></div>
+    <div class="no-break">
+      <h2 class="ch-sub">0.3 ตัวดำเนินการที่ต้องระวังเป็นพิเศษ (Operators)</h2>
+      <p>ตัวดำเนินการที่นักศึกษามักสับสนและผิดพลาดในข้อสอบ</p>
+    <table class="custom-table"><thead><tr><th>ตัวดำเนินการ</th><th>ชื่อ / การทำงาน</th><th>ตัวอย่างที่ถูกต้อง</th><th>ข้อผิดพลาดที่มักพบ</th></tr></thead><tbody><tr><td>/</td><td>การหาร (Integer Division)</td><td>5.0 / 2 = 2.5<br>(double) sum / n</td><td>5 / 2 = 2 (เศษถูกตัดทิ้งทั้งหมด!)</td></tr><tr><td>%</td><td>โมดูโล (เศษจากการหาร)</td><td>10 % 3 = 1<br>n % 2 == 0 (เช็คเลขคู่)</td><td>ลืมคิดกรณีเลขติดลบ เช่น -7 % 3 = -1</td></tr><tr><td>^</td><td>Bitwise XOR (ไม่ใช่ยกกำลัง!)</td><td>true ^ false = true<br>true ^ true = false</td><td>เอา 2^3 มาคิดว่าจะได้ 8 ใน Java ได้ 1 (2 XOR 3)</td></tr><tr><td>Math.pow()</td><td>การยกกำลังใน Java</td><td>Math.pow(2, 3) = 8.0 (คืนค่าเป็น double)</td><td>ลืม cast เป็น int เมื่อต้องการจำนวนเต็ม: (int)Math.pow(2,3)</td></tr><tr><td>&&</td><td>Logical AND (จริงทั้งคู่)</td><td>score >= 0 && score <= 100</td><td>เขียนแบบคณิตศาสตร์: 0 <= score <= 100 (Java Syntax Error!)</td></tr><tr><td>||</td><td>Logical OR (จริงอย่างน้อยหนึ่ง)</td><td>ch == 'y' || ch == 'Y'</td><td>เขียน ch == 'y' || 'Y' (ผิดไวยากรณ์)</td></tr><tr><td>!</td><td>Logical NOT (กลับค่าความจริง)</td><td>!found (เท่ากับ found == false)</td><td>สับสนลำดับการทำงานเมื่อใช้ร่วมกับตัวอื่น</td></tr><tr><td>==</td><td>เปรียบเทียบค่า / Reference</td><td>num == 5 (สำหรับ primitive)</td><td>ใช้ str == "yes" เปรียบเทียบ String (ต้องใช้ .equals())</td></tr></tbody></table><div class="card card-tip"><div class="card-header">💡 คำแนะนำสำคัญ</div><b>สูตรสำคัญ:</b> คำนวณค่าเฉลี่ยห้ามเขียน <code>sum / count</code> เด็ดขาด ให้เขียน <code>(double) sum / count</code> หรือ <code>sum * 1.0 / count</code> เสมอ</div></div>
+    <div class="no-break">
+      <h2 class="ch-sub">0.4 การรับค่าจากคีย์บอร์ดด้วย Scanner</h2>
+      <p>การจัดการ Scanner และการเคลียร์ Buffer</p>
+    <b>รูปแบบการใช้งาน Scanner มาตรฐาน</b><div class="code-container">import java.util.Scanner;
+
+Scanner sc = new Scanner(System.in);
+int age = sc.nextInt();          // รับเลขจำนวนเต็ม
+double price = sc.nextDouble();  // รับเลขทศนิยม
+String word = sc.next();         // รับข้อความคำเดียว (ตัดที่ space)
+String line = sc.nextLine();     // รับทั้งบรรทัด (รวม space)</div><b>กับดัก Scanner Buffer: nextInt() ตามด้วย nextLine()</b><div class="code-container">// ถ้าต้องรับตัวเลขแล้วตามด้วยข้อความทั้งบรรทัด:
+int id = sc.nextInt();
+sc.nextLine(); // สำคัญมาก! เพื่อเคลียร์ Enter (\n) ที่ค้างใน Buffer ทิ้งไป
+String fullName = sc.nextLine(); // จึงจะสามารถรับข้อความบรรทัดใหม่ได้จริง</div><div class="card card-tip"><div class="card-header">💡 คำแนะนำสำคัญ</div><b>ข้อควรปฏิบัติในแล็บ:</b> สร้าง Scanner เพียงตัวเดียวใน <code>main()</code> หาก Method ย่อยต้องการอ่านค่า ให้ส่ง Scanner เป็น Parameter เข้าไป อย่าสร้าง <code>new Scanner(System.in)</code> ซ้ำๆ ภายใน Method ย่อย</div></div>
+    <div class="page-break"></div>
+    <h1 class="ch-header">บทที่ 1: While Loops (Lab 06A — 7 Exercises)</h1>
+    <p><b>ภาพรวมเนื้อหา:</b> การควบคุมลูปแบบเช็คเงื่อนไขก่อนทำ, Sentinel-controlled loop, Counter loop, และ Menu-driven program</p>
+    
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 1: Ex 1: การ Trace การทำงานของ While Loop พื้นฐาน</h3>
+          <div>
+            <span class="badge badge-cat">Loop Flow & Counter</span>
+            <span class="badge badge-file">Lab06A_WhileLoop/Task1_Trace.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ทำความเข้าใจวงจรการทำงาน (Execution Cycle) ของคำสั่ง while, การตรวจสอบเงื่อนไขก่อนเข้าลูป, และการเปลี่ยนแปลงค่าตัวแปรนับรอบ (Counter)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Task1_Trace.java):</b>
+          <div class="code-container">// SE101 - Lab 6A: Task 1 (Exercise 1)
+// Trace the while Loop
+
+public class Task1_Trace {
+    public static void main(String[] args) {
+        int count = 0;
+        while (count &lt; 4) {
+            System.out.println(&quot;count = &quot; + count);
+            count++;
+        }
+        System.out.println(&quot;Done&quot;);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>ประกาศตัวแปรนับรอบ <code>int count = 0;</code> เป็นค่าเริ่มต้น</li><li>เข้าสู่เงื่อนไข <code>while (count < 4)</code>: โปรแกรมจะตรวจสอบว่า count น้อยกว่า 4 หรือไม่ หากเป็นจริง (true) จึงจะเข้าไปทำงานในปีกกา</li><li>ภายในลูป: พิมพ์ข้อความ <code>"Count is " + count</code> ออกทางหน้าจอ</li><li>เพิ่มค่า <code>count++</code> ทีละ 1 (หากลืมบรรทัดนี้จะกลายเป็น Infinite Loop ทันที)</li><li>เมื่อ count กลายเป็น 4 การตรวจสอบเงื่อนไข <code>4 < 4</code> จะเป็นเท็จ (false) ทำให้โปรแกรมหลุดออกจากลูป</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตารางจำลองการทำงาน (Trace Table):
+รอบที่ | ค่า count ก่อนตรวจ | เงื่อนไข (count &lt; 4) | ผลการพิมพ์ทางจอภาพ | ค่า count หลังเพิ่ม (count++)
+------------------------------------------------------------------------------------------
+  1   |        0        |    0 &lt; 4 (True)     | Count is 0       |            1
+  2   |        1        |    1 &lt; 4 (True)     | Count is 1       |            2
+  3   |        2        |    2 &lt; 4 (True)     | Count is 2       |            3
+  4   |        3        |    3 &lt; 4 (True)     | Count is 3       |            4
+  -   |        4        |    4 &lt; 4 (False)    | (หลุดออกจากลูป)   |            4
+
+ผลลัพธ์หลังจบลูป: ตัวแปร count มีค่าสุดท้ายเท่ากับ 4 (วนทำงานจริง 4 รอบ)</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เปลี่ยนเงื่อนไขเป็น <= :</b> ถ้าแก้เป็น <code>while (count <= 4)</code> ลูปจะวน 5 รอบ (count = 0, 1, 2, 3, 4) และค่าสุดท้ายของ count จะเป็น 5</li><li><b>เริ่มนับจาก 1:</b> <code>int count = 1; while (count <= 4)</code> จะได้รอบที่ count เป็น 1, 2, 3, 4 เช่นกัน แต่วิธีนี้เหมาะกับการนับจำนวนชิ้นงาน</li><li><b>เขียนแบบ Prefix Increment ในเงื่อนไข:</b> <code>while (++count < 4)</code> ค่า count จะถูกบวก 1 <i>ก่อน</i> นำไปตรวจสอบเงื่อนไข</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ข้อสอบ Trace ข้อเขียนมักถามว่า 'หลังจบลูป ตัวแปร count จะมีค่าเท่าใด?' นักศึกษามักตอบ 3 (เพราะเห็นตัวเลขสุดท้ายที่พิมพ์คือ 3) แต่คำตอบที่ถูกต้องคือ <b>4</b> เพราะต้องเพิ่มเป็น 4 ก่อนจึงจะทำให้เงื่อนไขเป็นเท็จและหลุดลูปได้
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 2: Ex 2: การนับถอยหลังและการตรวจสอบเลขคู่-คี่ (Countdown & Modulo)</h3>
+          <div>
+            <span class="badge badge-cat">Decrement Loop & If-Else Branching</span>
+            <span class="badge badge-file">Lab06A_WhileLoop/CountDown.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการสร้างลูปนับถอยหลัง (Decrement) และการนำตัวดำเนินการโมดูโล (%) มาใช้แยกแยะเลขคู่ (Even) และเลขคี่ (Odd)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (CountDown.java):</b>
+          <div class="code-container">public class CountDown {
+    public static void main(String[] args) {
+        int i = 10;
+        while (i &gt;= 2) {
+            System.out.println(i + (i % 2 == 0 ? &quot; Even&quot; : &quot; Odd&quot;));
+            i--;
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>กำหนดค่าเริ่มต้น <code>int i = 10;</code> (เริ่มจากค่ามาก)</li><li>เงื่อนไข <code>while (i >= 2)</code>: วนทำงานตราบใดที่ i ยังมีค่ามากกว่าหรือเท่ากับ 2</li><li>ตรวจสอบเลขคู่/คี่: ใช้ <code>if (i % 2 == 0)</code> ถ้าเศษเป็น 0 แปลว่าเป็นเลขคู่ ให้พิมพ์คำว่า 'Even' ถ้าไม่ใช่พิมพ์ 'Odd'</li><li>ลดค่าตัวแปร: <code>i--</code> เพื่อให้ค่านับถอยหลังลงไปเรื่อยๆ เข้าใกล้จุดสิ้นสุด</li><li>เมื่อ i ลดลงเหลือ 1 เงื่อนไข <code>1 >= 2</code> จะเป็นเท็จ ทำให้หยุดการทำงาน</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ลำดับการประมวลผล:
+i = 10 -&gt; 10 % 2 == 0 (True)  -&gt; พิมพ์: 10 Even  -&gt; i ลดเหลือ 9
+i = 9  -&gt; 9 % 2 == 0 (False) -&gt; พิมพ์: 9 Odd    -&gt; i ลดเหลือ 8
+i = 8  -&gt; 8 % 2 == 0 (True)  -&gt; พิมพ์: 8 Even  -&gt; i ลดเหลือ 7
+...
+i = 2  -&gt; 2 % 2 == 0 (True)  -&gt; พิมพ์: 2 Even  -&gt; i ลดเหลือ 1
+i = 1  -&gt; 1 &gt;= 2 (False)     -&gt; จบลูปทันที</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เขียนแบบย่อด้วย Ternary:</b> <code>System.out.println(i + (i % 2 == 0 ? " Even" : " Odd"));</code></li><li><b>ลดทีละ 2 เพื่อพิมพ์เฉพาะเลขคู่:</b> <code>for (int i = 10; i >= 2; i -= 2)</code> ไม่ต้องใช้ if เช็ค</li><li><b>นับถอยหลังถึง 0:</b> เปลี่ยนเงื่อนไขเป็น <code>while (i >= 0)</code> ตัวเลข 0 จะถือว่าเป็น Even</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ระวังการเขียนเครื่องหมายเปรียบเทียบกลับด้าน เช่น เผลอเขียน <code>i <= 2</code> ทำให้เงื่อนไขเป็นเท็จตั้งแต่รอบแรก (10 <= 2 คือ false) ส่งผลให้ลูปไม่ทำงานเลยแม้แต่รอบเดียว
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 3: Ex 3: Sentinel Loop สะสมผลรวมจนกว่าจะพบศูนย์</h3>
+          <div>
+            <span class="badge badge-cat">Sentinel-Controlled Loop & Statistics</span>
+            <span class="badge badge-file">Lab06A_WhileLoop/SumUntilZero.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เรียนรู้รูปแบบ Sentinel-Controlled Loop ซึ่งเป็น Pattern สำคัญอันดับหนึ่งของข้อสอบแล็บ โดยรับข้อมูลจากผู้ใช้ไปเรื่อยๆ จนกว่าจะเจอเลขระบุการหยุด (Sentinel Value)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (SumUntilZero.java):</b>
+          <div class="code-container">// SE101 - Lab 6A: Exercise 3 (SumUntilZero.java)
+import java.util.Scanner;
+
+public class SumUntilZero {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int sum = 0;
+        int count = 0;
+        int num;
+
+        while (true) {
+            System.out.print(&quot;Enter a number (0 to stop): &quot;);
+            num = scanner.nextInt();
+
+            if (num == 0) {
+                break;
+            }
+
+            sum += num;
+            count++;
+        }
+
+        System.out.println(&quot;You entered &quot; + count + &quot; numbers.&quot;);
+        System.out.println(&quot;Sum = &quot; + sum);
+        scanner.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>สร้าง Scanner และตัวแปรสะสมผลรวม <code>sum = 0</code>, ตัวแปรนับจำนวน <code>count = 0</code></li><li>ใช้ลูป <code>while (true)</code> เพื่อรับค่าวนซ้ำอย่างไม่จำกัดรอบ</li><li>รับค่าจากผู้ใช้: <code>int num = sc.nextInt();</code></li><li><b>ตรวจสอบ Sentinel ทันที:</b> <code>if (num == 0) break;</code> ออกจากลูปทันทีถ้าผู้ใช้ป้อน 0</li><li>หากไม่ใช่ 0 ให้นำไปสะสม <code>sum += num;</code> และนับเพิ่ม <code>count++;</code></li><li>หลังจบลูป: ป้องกันการหารด้วยศูนย์ <code>if (count > 0)</code> ก่อนคำนวณค่าเฉลี่ย <code>(double) sum / count</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างการป้อนข้อมูลและผลลัพธ์:
+Enter number: 8   -&gt; sum = 8,  count = 1
+Enter number: 12  -&gt; sum = 20, count = 2
+Enter number: 5   -&gt; sum = 25, count = 3
+Enter number: 0   -&gt; พบเลข 0 สั่ง break ทันที!
+----------------------------
+Total sum   = 25
+Total count = 3
+Average     = 8.33 (คำนวณจาก 25.0 / 3)</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เปลี่ยน Sentinel:</b> ข้อสอบอาจเปลี่ยนเป็น -1, -999 หรือ 9999</li><li><b>แบบไม่ใช้ break:</b> <code>int num = sc.nextInt(); while (num != 0) { sum += num; count++; num = sc.nextInt(); }</code> (รูปแบบ Read-before-loop)</li><li><b>หาค่า Min และ Max ไปด้วย:</b> ประกาศตัวแปร min, max แล้วอัปเดตทุกรอบที่ไม่ใช่ sentinel</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ข้อผิดพลาดร้ายแรง:</b> เอาคำสั่ง <code>sum += num;</code> ไปไว้ <i>ก่อน</i> คำสั่งตรวจสอบ sentinel ส่งผลให้เลข sentinel (เช่น 0 หรือ -999) ถูกบวกเข้าไปใน sum และถูกนับใน count ด้วย ทำให้ผลการคำนวณทั้งหมดผิดพลาด
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 4: Ex 4: ตารางแปลงหน่วยนิ้วเป็นเซนติเมตร (Unit Conversion Table)</h3>
+          <div>
+            <span class="badge badge-cat">Formatted Table Output & Step Loop</span>
+            <span class="badge badge-file">Lab06A_WhileLoop/InchToCm.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างตารางแสดงผลลัพธ์สองคอลัมน์ที่มีการจัดระยะช่องไฟอย่างเป็นระเบียบด้วยคำสั่ง <code>System.out.printf</code> และการก้าวข้ามรอบแบบสเต็ป (Step increment)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (InchToCm.java):</b>
+          <div class="code-container">// SE101 - Lab 6A: Exercise 4 (InchToCm.java)
+public class InchToCm {
+    public static void main(String[] args) {
+        System.out.printf(&quot;%-10s%-15s%n&quot;, &quot;Inches&quot;, &quot;Centimeters&quot;);
+        int inches = 1;
+        while (inches &lt;= 199) {
+            double cm = inches * 2.54;
+            System.out.printf(&quot;%-10d%-15.2f%n&quot;, inches, cm);
+            inches += 2;
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>พิมพ์ส่วนหัวตาราง (Table Header) โดยกำหนดความกว้างคอลัมน์ให้ตรงกับข้อมูลที่จะพิมพ์</li><li>กำหนดค่าเริ่มต้น <code>inches = 1</code></li><li>วนลูป <code>while (inches <= 199)</code> เพื่อแปลงค่าเฉพาะเลขคี่ตั้งแต่ 1 ถึง 199</li><li>คำนวณความยาวเป็นเซนติเมตรด้วยสูตร <code>cm = inches * 2.54;</code></li><li>แสดงผลด้วย <code>System.out.printf("%-10d%-15.2f\n", inches, cm);</code></li><li>เพิ่มค่าทีละ 2: <code>inches += 2;</code> (กระโดดจาก 1 -> 3 -> 5 -> ...)</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างหน้าจอ Output:
+Inches    Centimetres    
+-------------------------
+1         2.54           
+3         7.62           
+5         12.70          
+...
+197       500.38         
+199       505.46         
+
+อธิบาย Format:
+%-10d : จำนวนเต็ม กว้าง 10 ช่อง ชิดซ้าย
+%-15.2f: ทศนิยม 2 ตำแหน่ง กว้าง 15 ช่อง ชิดซ้าย</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>ตารางแปลงคู่ขนานสองทาง:</b> แสดงฝั่งซ้าย Inches -> Cm และฝั่งขวา Cm -> Inches ไปพร้อมกันในบรรทัดเดียว</li><li><b>แปลงเป็น For Loop:</b> <code>for (int inches = 1; inches <= 199; inches += 2)</code></li><li><b>รับขอบเขตจากผู้ใช้:</b> รับค่า minInches, maxInches และ stepSize จาก Scanner</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ลืมใส่เครื่องหมายลบใน Format Specifier เช่น เขียน <code>%10d</code> แทน <code>%-10d</code> ทำให้ข้อความจัดชิดขวาแทนที่จะชิดซ้าย ส่งผลให้หัวตารางเบี้ยวไม่ตรงกับข้อมูลตัวเลขด้านล่าง
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 5: Ex 5: ตัวเลขที่หารลงตัวด้วย 5 หรือ 7 แต่ไม่ใช่ทั้งสองตัว (XOR Operator)</h3>
+          <div>
+            <span class="badge badge-cat">Logic Operators & Line-break Formatting</span>
+            <span class="badge badge-file">Lab06A_WhileLoop/Divisibility.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกใช้ตัวดำเนินการตรรกะระดับบิต Exclusive OR (^) กับการตัดขึ้นบรรทัดใหม่ทุกๆ 10 จำนวน
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Divisibility.java):</b>
+          <div class="code-container">// SE101 - Lab 6A: Exercise 5 (Divisibility.java)
+import java.util.Scanner;
+
+public class Divisibility {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(&quot;Enter n: &quot;);
+        int n = scanner.nextInt();
+
+        int count = 0;
+        int num = 1;
+
+        while (num &lt;= n) {
+            if ((num % 5 == 0) ^ (num % 7 == 0)) {
+                System.out.print(num + &quot; &quot;);
+                count++;
+                if (count % 10 == 0) {
+                    System.out.println();
+                }
+            }
+            num++;
+        }
+
+        if (count % 10 != 0) {
+            System.out.println();
+        }
+        System.out.println(&quot;End.&quot;);
+        scanner.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>วนลูปตรวจสอบตัวเลขตั้งแต่ 100 ถึง 200 ด้วย <code>int num = 100; while (num <= 200)</code></li><li>สร้างเงื่อนไขตรวจสอบ: <code>(num % 5 == 0) ^ (num % 7 == 0)</code><br>เครื่องหมาย <code>^</code> (XOR) จะเป็นจริงก็ต่อเมื่อเงื่อนไขฝั่งใดฝั่งหนึ่งเป็นจริงเพียงฝั่งเดียวเท่านั้น</li><li>หากเข้าเงื่อนไข: พิมพ์ตัวเลขตามด้วยช่องว่าง <code>System.out.print(num + " ");</code> และเพิ่มตัวนับ <code>count++;</code></li><li>ขึ้นบรรทัดใหม่ทุก 10 ตัว: ตรวจสอบ <code>if (count % 10 == 0) System.out.println();</code></li><li>เพิ่มค่า <code>num++;</code> ไปตรวจตัวเลขถัดไป</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">การทดสอบค่าความจริงของเงื่อนไข XOR:
+- ตัวเลข 100: 100 % 5 == 0 (True), 100 % 7 == 0 (False) -&gt; True ^ False = True  -&gt; พิมพ์!
+- ตัวเลข 105: 105 % 5 == 0 (True), 105 % 7 == 0 (True)  -&gt; True ^ True  = False -&gt; ไม่พิมพ์! (เพราะหารลงทั้งคู่)
+- ตัวเลข 101: 101 % 5 == 0 (False), 101 % 7 == 0 (False)-&gt; False ^ False = False-&gt; ไม่พิมพ์!
+- ตัวเลข 140: หารลงทั้ง 5 และ 7 (35 * 4) -&gt; True ^ True = False -&gt; ไม่พิมพ์!</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เขียนโดยไม่ใช้ ^ :</b> <code>(num % 5 == 0 || num % 7 == 0) && !(num % 5 == 0 && num % 7 == 0)</code></li><li><b>หารลงตัวทั้งคู่ (AND):</b> <code>num % 5 == 0 && num % 7 == 0</code> หรือ <code>num % 35 == 0</code></li><li><b>เปลี่ยนจำนวนต่อบรรทัด:</b> เปลี่ยนเป็น 5 ตัวต่อบรรทัดด้วย <code>count % 5 == 0</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            เข้าใจผิดว่าเครื่องหมาย <code>^</code> คือการยกกำลัง (เช่น 2^3) ในภาษา Java เครื่องหมาย <code>^</code> คือ Bitwise Exclusive OR เท่านั้น หากต้องการยกกำลังต้องเรียก <code>Math.pow(base, exp)</code>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 6: Ex 6: เกมทายตัวเลขสุ่ม (Random Number & Guessing Loop)</h3>
+          <div>
+            <span class="badge badge-cat">Math.random & Binary Search Logic</span>
+            <span class="badge badge-file">Lab06A_WhileLoop/GuessNumber.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างการสุ่มตัวเลขด้วย <code>Math.random()</code>, ควบคุมลูปการเล่นเกมจนกว่าผู้ใช้จะตอบถูก และให้คำใบ้ 'มากไป / น้อยไป'
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (GuessNumber.java):</b>
+          <div class="code-container">// SE101 - Lab 6A: Exercise 6 (GuessNumber.java)
+import java.util.Scanner;
+
+public class GuessNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int secret = (int)(Math.random() * 100) + 1; // 1..100
+        int guess = 0;
+        int attempts = 0;
+
+        while (guess != secret) {
+            System.out.print(&quot;Guess a number (1-100): &quot;);
+            guess = scanner.nextInt();
+            attempts++;
+
+            if (guess &gt; secret) {
+                System.out.println(&quot;Too high!&quot;);
+            } else if (guess &lt; secret) {
+                System.out.println(&quot;Too low!&quot;);
+            } else {
+                System.out.println(&quot;Correct! You got it in &quot; + attempts + &quot; attempts.&quot;);
+            }
+        }
+        scanner.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>สุ่มตัวเลขเป้าหมายในช่วง 0 ถึง 100: <code>int secret = (int)(Math.random() * 101);</code></li><li>เปิดลูป <code>while (true)</code> เพื่อรับการทายจากผู้ใช้ซ้ำๆ</li><li>รับตัวเลขที่ทาย <code>int guess = sc.nextInt();</code></li><li>เปรียบเทียบค่า:<br>- ถ้า <code>guess > secret</code>: แสดง 'Too high'<br>- ถ้า <code>guess < secret</code>: แสดง 'Too low'<br>- ถ้าเท่ากัน: แสดง 'Yes, the number is ...' แล้ว <code>break;</code> จบลูป</li><li>นับจำนวนรอบที่ทายไปเพื่อบอกสถิติของผู้เล่น</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างการเล่น (สมมติเลขสุ่มได้ 42):
+Guess a magic number between 0 and 100
+Enter your guess: 50
+Your guess is too high
+Enter your guess: 25
+Your guess is too low
+Enter your guess: 37
+Your guess is too low
+Enter your guess: 42
+Yes, the number is 42! (ทายสำเร็จใน 4 ครั้ง)</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>จำกัดจำนวนครั้ง:</b> ตั้ง <code>maxTries = 7</code> หากทายเกินให้แสดงว่าคุณแพ้ (You Lose) และเฉลยตัวเลข</li><li><b>สุ่มช่วง 1 ถึง 100:</b> <code>int secret = (int)(Math.random() * 100) + 1;</code></li><li><b>ใช้ do-while:</b> เหมาะกับเกมทายตัวเลขเพราะต้องรับค่าทายอย่างน้อย 1 ครั้งแน่นอน</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ข้อผิดพลาดของการ Cast Type:</b> ถ้าเขียน <code>(int)Math.random() * 101</code> วงเล็บจะ cast ค่า Math.random() ซึ่งมีค่าระหว่าง 0.0 ถึง 0.999... กลายเป็น 0 ก่อนเสมอ แล้วนำ 0 ไปคูณ 101 ผลลัพธ์จึงได้ 0 ตลอดกาล! วงเล็บที่ถูกต้องคือ <code>(int)(Math.random() * 101)</code>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 7: Ex 7: เมนูโปรแกรมเครื่องคิดเลขซ้ำ (Menu-Driven Calculator)</h3>
+          <div>
+            <span class="badge badge-cat">Switch-Case & Input Validation</span>
+            <span class="badge badge-file">Lab06A_WhileLoop/Calculator.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            พัฒนาโปรแกรมจำลองเครื่องคิดเลขที่มีเมนูตัวเลือก วนรอบการทำงานซ้ำจนกว่าผู้ใช้จะเลือกเมนูออก (Quit) พร้อมป้องกันข้อผิดพลาดทางคณิตศาสตร์
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Calculator.java):</b>
+          <div class="code-container">// SE101 - Lab 6A: Exercise 7 (Calculator.java)
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+
+        System.out.println(&quot;=== Simple Calculator ===&quot;);
+
+        while (choice != 5) {
+            System.out.println(&quot;1. Add   2. Subtract   3. Multiply   4. Divide   5. Exit&quot;);
+            System.out.print(&quot;Choose operation: &quot;);
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print(&quot;Enter two numbers: &quot;);
+                    double add1 = scanner.nextDouble();
+                    double add2 = scanner.nextDouble();
+                    System.out.println(add1 + &quot; + &quot; + add2 + &quot; = &quot; + (add1 + add2));
+                    break;
+                case 2:
+                    System.out.print(&quot;Enter two numbers: &quot;);
+                    double sub1 = scanner.nextDouble();
+                    double sub2 = scanner.nextDouble();
+                    System.out.println(sub1 + &quot; - &quot; + sub2 + &quot; = &quot; + (sub1 - sub2));
+                    break;
+                case 3:
+                    System.out.print(&quot;Enter two numbers: &quot;);
+                    double mul1 = scanner.nextDouble();
+                    double mul2 = scanner.nextDouble();
+                    System.out.println(mul1 + &quot; * &quot; + mul2 + &quot; = &quot; + (mul1 * mul2));
+                    break;
+                case 4:
+                    System.out.print(&quot;Enter two numbers: &quot;);
+                    double div1 = scanner.nextDouble();
+                    double div2 = scanner.nextDouble();
+                    if (div2 == 0) {
+                        System.out.println(&quot;Error: Division by zero!&quot;);
+                    } else {
+                        System.out.println(div1 + &quot; / &quot; + div2 + &quot; = &quot; + (div1 / div2));
+                    }
+                    break;
+                case 5:
+                    System.out.println(&quot;Goodbye!&quot;);
+                    break;
+                default:
+                    System.out.println(&quot;Invalid choice! Please choose 1-5.&quot;);
+                    break;
+            }
+        }
+        scanner.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>แสดงเมนูทางเลือก 1: Add, 2: Subtract, 3: Multiply, 4: Divide, 5: Exit</li><li>ใช้ลูป <code>while (true)</code> หรือ <code>while (choice != 5)</code></li><li>รับตัวเลือกเมนู <code>int choice = sc.nextInt();</code></li><li>ถ้าเลือก 5: พิมพ์ข้อความอำลาและ <code>break;</code></li><li>ถ้าเลือก 1-4: รับตัวเลข 2 จำนวน (num1, num2) แล้วส่งเข้า <code>switch (choice)</code></li><li><b>ตรวจสอบ Division by Zero:</b> ใน Case 4 หาก <code>num2 == 0</code> ต้องแจ้งเตือน Error ทันที ไม่ปล่อยให้โปรแกรมหารเลขเพราะจะทำให้โปรแกรมค้างหรือเกิด ArithmeticException</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างหน้าจอการทำงาน:
+--- Simple Calculator ---
+1. Add (+)
+2. Subtract (-)
+3. Multiply (*)
+4. Divide (/)
+5. Exit
+Enter choice (1-5): 4
+Enter first number: 10
+Enter second number: 0
+Error: Division by zero is not allowed!
+
+Enter choice (1-5): 1
+Enter first number: 15
+Enter second number: 27
+Result: 15.0 + 27.0 = 42.0
+
+Enter choice (1-5): 5
+Exiting program... Goodbye!</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เพิ่มเมนูยกกำลังหรือหารเอาเศษ:</b> Case 5: Modulo (%), Case 6: Power (Math.pow)</li><li><b>รับเครื่องหมายทางคณิตศาสตร์เป็นตัวอักษร:</b> เช่น รับ '+', '-', '*', '/' แทนตัวเลข 1, 2, 3, 4</li><li><b>ทำเป็น Method ย่อย:</b> แยกฟังก์ชัน <code>add(a,b)</code>, <code>subtract(a,b)</code>, <code>divide(a,b)</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ลืมใส่คำสั่ง <code>break;</code> ท้ายแต่ละ case ใน switch-case ทำให้อัลกอริทึมไหลทะลุไปคำนวณเคสอื่นๆ ด้วย และลืมดักจับกรณีผู้ใช้ป้อนตัวเลือกนอกเหนือจาก 1-5 (ควรมี <code>default:</code> รองรับ)
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+    <div class="page-break"></div>
+    <h1 class="ch-header">บทที่ 2: For Loops & Nested Loops (Lab 07A — 7 Exercises)</h1>
+    <p><b>ภาพรวมเนื้อหา:</b> ลูปตัวแปรคู่, Break/Continue, อัลกอริทึม GCD, การหาจำนวนเฉพาะ, และพีระมิดเลขยกกำลังฐานสอง</p>
+    
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 8: Ex 1: โครงสร้างพื้นฐานของ For Loop และการคำนวณกำลังสอง</h3>
+          <div>
+            <span class="badge badge-cat">Basic For Loop Structure</span>
+            <span class="badge badge-file">Lab07A_ForLoop/Exercise1.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เข้าใจ 3 ส่วนประกอบหลักของ For Loop ได้แก่ Initialization (กำหนดค่าเริ่มต้น), Loop Continuation Condition (เงื่อนไขการวนรอบ), และ Update Expression (การเปลี่ยนแปลงค่า)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Exercise1.java):</b>
+          <div class="code-container">public class Exercise1 {
+    public static void main(String[] args) {
+        // Step 1: เริ่มต้น loop โดยให้ i = 1
+        // Step 2: ตรวจสอบเงื่อนไข i &lt;= 4 ถ้าเป็นจริงจะเข้าทำงานใน loop
+        // Step 3: ทำงานจบ 1 รอบ จะสั่ง i++ (เพิ่มค่า i ทีละ 1)
+        for (int i = 1; i &lt;= 4; i++) {
+            System.out.println(i + &quot; squared = &quot; + (i * i));
+            }
+        System.out.println(&quot;Done&quot;);
+        }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>หัวลูป <code>for (int i = 1; i <= 4; i++)</code> ประกอบด้วย:<br>1. <code>int i = 1;</code> กำหนดตัวแปรนับ i เริ่มที่ 1<br>2. <code>i <= 4;</code> วนซ้ำตราบเท่าที่ i ไม่เกิน 4<br>3. <code>i++</code> เพิ่มค่า i ทีละ 1 หลังจบรอบ</li><li>ภายในลูป: คำนวณค่ากำลังสอง <code>i * i</code> แล้วแสดงผลด้วย <code>System.out.println(i + " squared = " + (i * i));</code></li><li>เมื่อ i กลายเป็น 5 เงื่อนไข <code>5 <= 4</code> เป็นเท็จ จึงหลุดออกจากลูป</li><li>หลังจบลูป: พิมพ์คำว่า 'Done!'</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ลำดับการวนรอบและผลลัพธ์:
+i = 1 -&gt; 1 &lt;= 4 (T) -&gt; พิมพ์ &quot;1 squared = 1&quot;  -&gt; i เพิ่มเป็น 2
+i = 2 -&gt; 2 &lt;= 4 (T) -&gt; พิมพ์ &quot;2 squared = 4&quot;  -&gt; i เพิ่มเป็น 3
+i = 3 -&gt; 3 &lt;= 4 (T) -&gt; พิมพ์ &quot;3 squared = 9&quot;  -&gt; i เพิ่มเป็น 4
+i = 4 -&gt; 4 &lt;= 4 (T) -&gt; พิมพ์ &quot;4 squared = 16&quot; -&gt; i เพิ่มเป็น 5
+i = 5 -&gt; 5 &lt;= 4 (F) -&gt; หลุดลูป
+พิมพ์ &quot;Done!&quot; ทางจอภาพ</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เขียนเทียบเท่าในรูป While Loop:</b><br><code>int i = 1; while (i <= 4) { System.out.println(i + " squared = " + (i * i)); i++; }</code></li><li><b>ยกกำลังสาม (Cube):</b> <code>i * i * i</code> หรือ <code>(int)Math.pow(i, 3)</code></li><li><b>รับจำนวนรอบจากผู้ใช้:</b> เปลี่ยน 4 เป็นตัวแปร <code>n</code> ที่รับจาก <code>sc.nextInt()</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ระวังการใส่เครื่องหมาย semicolon หลังหัว for เช่น <code>for (int i = 1; i <= 4; i++);</code> จะทำให้ลูปทำงานเป็นคำสั่งว่าง (Empty Statement) ตัวแปร i จะนับจนถึง 5 แล้วค่อยไปทำปีกกาด้านล่างเพียงรอบเดียว ซึ่งเป็น Logic Error ที่คอมไพเลอร์ไม่แจ้งเตือน
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 9: Ex 2: การคำนวณผลรวมสะสม แยกผลรวมเลขคู่และเลขคี่ (Even/Odd Accumulators)</h3>
+          <div>
+            <span class="badge badge-cat">Multiple Accumulators & Parity Check</span>
+            <span class="badge badge-file">Lab07A_ForLoop/SumNumber.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการใช้ตัวแปรสะสมค่า (Accumulators) หลายตัวพร้อมกันในลูปเดียว เพื่อคำนวณผลรวมทั้งหมด, ผลรวมเฉพาะเลขคู่, และผลรวมเฉพาะเลขคี่
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (SumNumber.java):</b>
+          <div class="code-container">public class SumNumber {
+    public static void main(String[] args) {
+        int sum = 0, evenSum = 0, oddSum = 0;
+        for (int i = 1; i &lt;= 100; i++) {
+            sum += i;
+            if (i % 2 == 0)
+                evenSum += i;
+            else
+                oddSum += i;
+        }
+        System.out.println(&quot;Sum 1-100 = &quot; + sum);
+        System.out.println(&quot;Sum of even numbers = &quot; + evenSum);
+        System.out.println(&quot;Sum of odd numbers  = &quot; + oddSum);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>ประกาศตัวแปรสะสมค่า 3 ตัวเริ่มต้นเป็น 0:<br><code>int totalSum = 0;</code><br><code>int evenSum = 0;</code><br><code>int oddSum = 0;</code></li><li>วนลูป <code>for (int i = 1; i <= 100; i++)</code> ตรวจสอบเลข 1 ถึง 100</li><li>ทุกรอบบวกเข้าผลรวมทั้งหมด: <code>totalSum += i;</code></li><li>ตรวจสอบเงื่อนไขเลขคู่/คี่:<br>- ถ้า <code>i % 2 == 0</code>: สะสมเข้า <code>evenSum += i;</code><br>- ถ้าไม่ใช่: สะสมเข้า <code>oddSum += i;</code></li><li>เมื่อจบลูป แสดงผลลัพธ์ทั้ง 3 บรรทัด</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างผลการคำนวณ 1 ถึง 100:
+Sum of numbers from 1 to 100 = 5050
+Sum of even numbers from 1 to 100 = 2550
+Sum of odd numbers from 1 to 100 = 2500
+
+การตรวจสอบความถูกต้องทางคณิตศาสตร์:
+totalSum ต้องเท่ากับ evenSum + oddSum พอดี
+2550 + 2500 = 5050 (ถูกต้อง 100%)</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>ใช้สูตรคณิตศาสตร์หา Total Sum:</b> $N(N + 1) / 2 = 100 \times 101 / 2 = 5050$</li><li><b>แยก 2 ลูปแบบก้าวข้าม (Step by 2):</b><br>- คู่: <code>for (int i = 2; i <= 100; i += 2) evenSum += i;</code><br>- คี่: <code>for (int i = 1; i <= 100; i += 2) oddSum += i;</code></li><li><b>หาค่าเฉลี่ยของเลขคู่และเลขคี่เพิ่มเติม:</b> นับ <code>evenCount</code> และ <code>oddCount</code> แล้วนำไปหาร</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ลืมกำหนดค่าเริ่มต้นเป็น 0 ให้กับตัวแปรสะสม (เช่น ประกาศ <code>int sum;</code> เฉยๆ) คอมไพเลอร์ของ Java จะไม่อนุญาตให้ใช้ตัวแปรที่ยังไม่ได้ initialize ในการบวกสะสม (The local variable may not have been initialized)
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 10: Ex 3: ตารางแปลงหน่วยกิโลกรัม-ปอนด์ ด้วยลูปตัวแปรคู่ (Two-Variable For Loop)</h3>
+          <div>
+            <span class="badge badge-cat">Multi-variable Loop & Formatted Table</span>
+            <span class="badge badge-file">Lab07A_ForLoop/UnitTable.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เรียนรู้เทคนิคขั้นสูงของคำสั่ง for ที่สามารถประกาศและปรับเปลี่ยนค่าของตัวแปร 2 ตัวพร้อมกันในหัวลูปเดียว (Parallel Iteration)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (UnitTable.java):</b>
+          <div class="code-container">public class UnitTable {
+    public static void main(String[] args) {
+        System.out.println(&quot;Kilograms    Pounds&quot;);
+        for (int kg = 1, lb = 20; kg &lt;= 19; kg += 2, lb += 5) {
+            System.out.printf(&quot;%-12d%.2f%n&quot;, kg, (double) lb);
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>พิมพ์หัวตารางเปรียบเทียบ: Kilograms vs Pounds</li><li>หัวลูปกำหนดตัวแปร 2 ตัวพร้อมกัน:<br><code>for (int kg = 1, lb = 20; kg <= 199; kg += 2, lb += 5)</code><br>- <code>kg</code> เริ่มจาก 1 เพิ่มขึ้นรอบละ 2 (1, 3, 5, ..., 199)<br>- <code>lb</code> เริ่มจาก 20 เพิ่มขึ้นรอบละ 5 (20, 25, 30, ...)<br>- ใช้เครื่องหมายจุลภาค (,) คั่นระหว่างตัวแปร</li><li>แปลงหน่วย: $1\text{ kg} = 2.2\text{ lb}$ และ $1\text{ lb} = 0.453592\text{ kg}$</li><li>จัดหน้าตาตาราง 4 คอลัมน์ด้วย <code>printf("%-10d%-10.1f   |   %-10d%-10.2f\n", kg, kg * 2.2, lb, lb * 0.4545)</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">หน้าจอผลลัพธ์ของโปรแกรม:
+Kilograms   Pounds     |   Pounds      Kilograms  
+--------------------------------------------------
+1           2.2        |   20          9.09       
+3           6.6        |   25          11.36      
+5           11.0       |   30          13.64      
+...
+197         433.4      |   510         231.82     
+199         437.8      |   515         234.09     </div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เขียนโดยใช้ตัวแปรเดียว:</b> วนเฉพาะ kg แล้วคำนวณ lb ตามรอบ: <code>int lb = 20 + ((kg - 1) / 2) * 5;</code></li><li><b>เขียนในรูป While Loop:</b> ต้องประกาศ kg, lb แยกบรรทัดก่อนลูป แล้วเพิ่มค่า kg += 2, lb += 5 ท้ายลูป</li><li><b>แปลงหน่วยอุณหภูมิคู่ขนาน:</b> เซลเซียสคู่กับฟาเรนไฮต์</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ใส่เครื่องหมาย semicolon (;) แทนเครื่องหมาย comma (,) ในหัว for เช่น <code>for (int kg = 1; lb = 20; ...)</code> ใน Java อนุญาตให้มีเครื่องหมาย semicolon ในหัว for ได้เพียง 2 ตัวเท่านั้นเพื่อแยก 3 ส่วนหลัก หากต้องการหลายตัวแปรต้องใช้ comma (,) คั่น
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 11: Ex 4: การควบคุมวงจรลูปด้วย Break และ Continue</h3>
+          <div>
+            <span class="badge badge-cat">Loop Control Jump Statements</span>
+            <span class="badge badge-file">Lab07A_ForLoop/BreakContinue.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เข้าใจความแตกต่างอย่างชัดเจนระหว่างคำสั่ง <code>break</code> (หยุดและออกจากลูปทันที) และคำสั่ง <code>continue</code> (ข้ามรอบปัจจุบันไปเริ่มรอบถัดไป)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (BreakContinue.java):</b>
+          <div class="code-container">public class BreakContinue {
+    public static void main(String[] args) {
+        System.out.print(&quot;Snippet A: &quot;);
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i == 6) break;
+            System.out.print(i + &quot; &quot;);
+        }
+
+        System.out.println();
+
+        System.out.print(&quot;Snippet B: &quot;);
+        for (int i = 1; i &lt;= 10; i++) {
+            if (i % 3 == 0) continue;
+            System.out.print(i + &quot; &quot;);
+        }
+        System.out.println();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li><b>Snippet A (คำสั่ง break):</b><br>- วนลูป <code>for (int i = 1; i <= 10; i++)</code><br>- ตรวจสอบ <code>if (i == 6) break;</code><br>- ทันทีที่ i มีค่าเป็น 6 คำสั่ง break จะบังคับให้โปรแกรมกระโดดออกจากลูปทันที ส่งผลให้เลข 6 ถึง 10 ไม่ถูกพิมพ์</li><li><b>Snippet B (คำสั่ง continue):</b><br>- วนลูป <code>for (int i = 1; i <= 10; i++)</code><br>- ตรวจสอบ <code>if (i % 3 == 0) continue;</code><br>- ถ้าตัวเลขหารด้วย 3 ลงตัว (เลข 3, 6, 9) คำสั่ง continue จะข้ามคำสั่งพิมพ์ด้านล่าง แล้วกระโดดไปทำ <code>i++</code> เพื่อเริ่มรอบใหม่ทันที</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">เปรียบเทียบผลลัพธ์ของทั้งสองชุดคำสั่ง:
+
+[Snippet A: break at 6]
+i = 1 -&gt; พิมพ์ 1
+i = 2 -&gt; พิมพ์ 2
+i = 3 -&gt; พิมพ์ 3
+i = 4 -&gt; พิมพ์ 4
+i = 5 -&gt; พิมพ์ 5
+i = 6 -&gt; เข้าเงื่อนไข break -&gt; จบลูปทันที!
+Output: 1 2 3 4 5 
+
+[Snippet B: continue at multiple of 3]
+พิมพ์เลข: 1, 2, (3 ข้าม), 4, 5, (6 ข้าม), 7, 8, (9 ข้าม), 10
+Output: 1 2 4 5 7 8 10 </div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>Labeled Break ใน Nested Loop:</b> <code>outerLoop: for (...) { for (...) { if (...) break outerLoop; } }</code> เพื่อกระโดดออกจากลูปซ้อนทั้งหมดในคำสั่งเดียว</li><li><b>ใช้ตัวแปร Boolean Flag แทน break:</b> <code>boolean keepRunning = true; while (keepRunning) { ... if (...) keepRunning = false; }</code></li><li><b>กรองข้อมูล:</b> ใช้ continue ในการกรองข้อมูลที่ไม่ต้องการ เช่น ข้ามค่าที่ติดลบ</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            เขียนคำสั่งวางไว้ใต้ break หรือ continue ในบล็อกเดียวกันโดยไม่มีเงื่อนไขครอบ จะเกิดข้อผิดพลาด <code>Unreachable code</code> เพราะคอมไพเลอร์รู้ว่าคำสั่งบรรทัดนั้นไม่มีทางถูกเรียกทำงานได้จริง
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 12: Ex 5: การหาตัวหารร่วมมาก (Greatest Common Divisor - GCD)</h3>
+          <div>
+            <span class="badge badge-cat">Brute Force Search Algorithm</span>
+            <span class="badge badge-file">Lab07A_ForLoop/GCD.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างอัลกอริทึมค้นหาตัวหารร่วมมากของจำนวนเต็มบวก 2 จำนวน ด้วยวิธี Brute-force Search จากล่างขึ้นบน
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (GCD.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class GCD {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print(&quot;Enter n1: &quot;);
+        int n1 = input.nextInt();
+        System.out.print(&quot;Enter n2: &quot;);
+        int n2 = input.nextInt();
+
+        int gcd = 1;
+
+        for (int k = 2; k &lt;= n1 &amp;&amp; k &lt;= n2; k++) {
+            if (n1 % k == 0 &amp;&amp; n2 % k == 0) {
+                gcd = k;
+            }
+        }
+
+        System.out.println(&quot;GCD(&quot; + n1 + &quot;, &quot; + n2 + &quot;) = &quot; + gcd);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>รับจำนวนเต็มบวก 2 ตัว <code>n1</code> และ <code>n2</code> จากผู้ใช้</li><li>กำหนดค่าเริ่มต้นของ ห.ร.ม. <code>int gcd = 1;</code> (เพราะจำนวนเต็มบวกใดๆ ย่อมมี 1 เป็นตัวหารร่วมเสมอ)</li><li>หาขอบเขตสูงสุดที่จะทดสอบ: ตัวหารร่วมไม่มีทางเกินค่าน้อยของสองตัว จึงเริ่มลูป <code>int k = 2; k <= n1 && k <= n2; k++</code></li><li>ตรวจสอบเงื่อนไขการหารลงตัวทั้งคู่: <code>if (n1 % k == 0 && n2 % k == 0)</code></li><li>หาก k หารทั้งสองจำนวนลงตัว ให้อัปเดต <code>gcd = k;</code> (ค่า k ที่มากขึ้นเรื่อยๆ จะทับค่าเดิมจนได้ค่าที่มากที่สุด)</li><li>เมื่อจบลูป แสดงผลค่า gcd ที่ได้</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างการหา GCD ของ n1 = 24 และ n2 = 36:
+เริ่มต้น: gcd = 1, ทดสอบ k = 2 ถึง 24
+- k = 2: 24%2==0 และ 36%2==0 -&gt; จริง -&gt; gcd = 2
+- k = 3: 24%3==0 และ 36%3==0 -&gt; จริง -&gt; gcd = 3
+- k = 4: 24%4==0 และ 36%4==0 -&gt; จริง -&gt; gcd = 4
+- k = 6: 24%6==0 และ 36%6==0 -&gt; จริง -&gt; gcd = 6
+- k = 12: 24%12==0 และ 36%12==0 -&gt; จริง -&gt; gcd = 12
+... ไม่พบตัวหารร่วมที่มากกว่านี้
+ผลลัพธ์: GCD of 24 and 36 is 12</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>ค้นหาถอยหลังจากบนลงล่าง (Fast Brute-force):</b> เริ่มจาก <code>Math.min(n1, n2)</code> ลงมาหา 1 ตัวแรกที่หารลงทั้งคู่คือ ห.ร.ม. ทันที แล้วสั่ง break ได้เลย</li><li><b>Euclidean Algorithm (วิธีของยุคลิดด้วย Modulo):</b> มีประสิทธิภาพสูงสุด $O(\log N)$<br><code>while (n2 != 0) { int temp = n2; n2 = n1 % n2; n1 = temp; } return n1;</code></li><li><b>หา ค.ร.น. (LCM):</b> ใช้สูตร $LCM(a, b) = (a \times b) / GCD(a, b)$</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ตั้งค่าเริ่มต้น <code>gcd = 0</code> หากป้อนตัวเลขที่เป็น Coprime กัน (เช่น 7 และ 9) ลูปจะไม่เจอตัวหารตั้งแต่ 2 ขึ้นไป ส่งผลให้โปรแกรมตอบว่า gcd เป็น 0 ซึ่งผิดหลักคณิตศาสตร์ ค่าเริ่มต้นต้องเป็น <b>1</b> เสมอ
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 13: Ex 6: การพิมพ์จำนวนเฉพาะ 50 ตัวแรก (Prime Numbers & Primality Test)</h3>
+          <div>
+            <span class="badge badge-cat">Nested Loop & Primality Testing</span>
+            <span class="badge badge-file">Lab07A_ForLoop/PrimeNumbers.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้าง Nested Loops เพื่อค้นหาและแสดงจำนวนเฉพาะ (Prime Numbers) 50 ตัวแรก โดยจัดแถวละ 10 จำนวนอย่างเป็นระเบียบ
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (PrimeNumbers.java):</b>
+          <div class="code-container">public class PrimeNumbers {
+    public static void main(String[] args) {
+        int count = 0;
+        int number = 2;
+
+        while (count &lt; 50) {
+            boolean isPrime = true;
+
+            for (int divisor = 2; divisor &lt;= number / 2; divisor++) {
+                if (number % divisor == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                System.out.print(number + &quot; &quot;);
+                count++;
+
+                if (count % 10 == 0) {
+                    System.out.println();
+                }
+            }
+
+            number++;
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>กำหนดตัวแปร: <code>int count = 0;</code> (นับจำนวนเฉพาะที่พบ), <code>int number = 2;</code> (ตัวเลขแรกที่จะทดสอบ)</li><li>ลูปนอก <code>while (count < 50)</code>: ทำงานตราบใดที่ยังพบจำนวนเฉพาะไม่ครบ 50 ตัว</li><li>สมมติให้ตัวเลขนั้นเป็นจำนวนเฉพาะไว้ก่อน: <code>boolean isPrime = true;</code></li><li>ลูปใน: วนทดสอบตัวหาร <code>for (int divisor = 2; divisor <= number / 2; divisor++)</code></li><li>หาก <code>number % divisor == 0</code>: แปลว่ามีตัวหารลงตัว แสดงว่าไม่ใช่จำนวนเฉพาะ ให้ตั้ง <code>isPrime = false; break;</code></li><li>ตรวจสอบหลังลูปใน: ถ้า <code>isPrime == true</code> ให้นับเพิ่ม <code>count++;</code> แล้วพิมพ์</li><li>ตัดบรรทัดใหม่ทุก 10 ตัว: <code>if (count % 10 == 0) System.out.println();</code></li><li>เพิ่ม <code>number++;</code> เพื่อทดสอบตัวเลขถัดไป</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ขั้นตอนการทดสอบตัวเลข:
+- number = 2: divisor ลูปไม่ทำงาน -&gt; isPrime=true -&gt; count=1, พิมพ์ 2
+- number = 3: divisor ลูปไม่ทำงาน -&gt; isPrime=true -&gt; count=2, พิมพ์ 3
+- number = 4: divisor=2 -&gt; 4%2==0 -&gt; isPrime=false, break -&gt; ไม่พิมพ์
+- number = 5: divisor=2 -&gt; 5%2!=0 -&gt; isPrime=true -&gt; count=3, พิมพ์ 5
+
+ผลลัพธ์หน้าจอ (10 ตัวต่อบรรทัด):
+  2   3   5   7  11  13  17  19  23  29
+ 31  37  41  43  47  53  59  61  67  71
+ 73  79  83  89  97 101 103 107 109 113
+127 131 137 139 149 151 157 163 167 173
+179 181 191 193 197 199 211 223 227 229</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เพิ่มความเร็วด้วย Math.sqrt:</b> เปลี่ยนขอบเขตตัวหารเป็น <code>divisor <= Math.sqrt(number)</code></li><li><b>แยก Primality Test เป็น Method ย่อย:</b> <code>public static boolean isPrime(int n)</code> (ดูใน Lab 10B)</li><li><b>หาจำนวนเฉพาะในช่วง [A, B]:</b> เปลี่ยนลูปนอกเป็น <code>for (int n = start; n <= end; n++)</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>จุดผิดยอดฮิต:</b> ประกาศตัวแปร <code>boolean isPrime = true;</code> ไว้นอกลูป while ส่งผลให้ทันทีที่พบเลขที่ไม่ใช่จำนวนเฉพาะแม้แต่ตัวเดียว ตัวแปร isPrime จะกลายเป็น false ตลอดไป และโปรแกรมจะไม่พิมพ์จำนวนเฉพาะตัวใดออกมาอีกเลย! ต้องรีเซ็ต <code>isPrime = true;</code> <i>ภายใน</i> ลูปนอกทุกรอบ
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 14: Ex 7: พีระมิดเลขยกกำลังฐาน 2 กึ่งกลางหน้าจอ (Powers of 2 Centered Pyramid)</h3>
+          <div>
+            <span class="badge badge-cat">Nested Loops & Geometric Pattern Printing</span>
+            <span class="badge badge-file">Lab07A_ForLoop/Pyramid.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างลูปซ้อน 3 ชั้น (Nested Loops) เพื่อจัดตำแหน่งช่องว่างและพิมพ์ตัวเลขยกกำลังของ 2 ($2^0, 2^1, ..., 2^k$) ในรูปทรงพีระมิดหน้าจั่วกึ่งกลางหน้าจออย่างสมบูรณ์แบบ
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Pyramid.java):</b>
+          <div class="code-container">public class Pyramid {
+    public static void main(String[] args) {
+        int totalRows = 7;
+
+        for (int row = 1; row &lt;= totalRows; row++) {
+            for (int space = 1; space &lt;= totalRows - row; space++) {
+                System.out.print(&quot;  &quot;);
+            }
+
+            for (int col = 0; col &lt; row; col++) {
+                int value = (int) Math.pow(2, col);
+                System.out.printf(&quot;%4d&quot;, value);
+            }
+
+            System.out.println();
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>กำหนดความสูงของพีระมิด <code>int totalRows = 7;</code> (หรือ 8)</li><li><b>ลูปชั้นนอก (Outer Loop):</b> <code>for (int row = 1; row <= totalRows; row++)</code> ควบคุมแถวตั้งแต่ 1 ถึง 7</li><li><b>ลูปชั้นในที่ 1 (Leading Spaces):</b> <code>for (int space = 1; space <= (totalRows - row) * 2; space++) System.out.print(" ");</code> พิมพ์ช่องว่างเยื้องซ้ายเพื่อดันตัวเลขให้เป็นทรงสามเหลี่ยมพีระมิดกึ่งกลาง</li><li><b>ลูปชั้นในที่ 2 (Numbers):</b> <code>for (int col = 0; col < row; col++)</code><br>- คำนวณเลขยกกำลังฐานสอง: <code>(int)Math.pow(2, col)</code><br>- จัดรูปแบบตัวเลขให้กว้าง 4 ช่องพอดีเสมอด้วย <code>System.out.printf("%4d", value);</code></li><li>ขึ้นบรรทัดใหม่เมื่อพิมพ์จบแถว: <code>System.out.println();</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">โครงสร้างการคำนวณแต่ละแถว:
+Row 1: (7-1)*2 = 12 spaces | pow(2,0) = 1
+Row 2: (7-2)*2 = 10 spaces | pow(2,0)=1, pow(2,1)=2
+Row 3: (7-3)*2 =  8 spaces | pow(2,0)=1, pow(2,1)=2, pow(2,2)=4
+...
+Row 7: (7-7)*2 =  0 spaces | 1   2   4   8  16  32  64
+
+รูปทรง Output ที่ถูกต้องตามโจทย์ (Centered Pyramid):
+                        1
+                    1   2
+                1   2   4
+            1   2   4   8
+        1   2   4   8  16
+    1   2   4   8  16  32
+1   2   4   8  16  32  64</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>พีระมิดสมมาตรแบบเพิ่มแล้วลด (Palindrome Pyramid):</b> พิมพ์ 1 2 4 8 4 2 1 ในแถวเดียว โดยใช้ลูปเลขขาขึ้นแล้วตามด้วยลูปเลขขาลง</li><li><b>พีระมิดดาว (*):</b> แทนที่ตัวเลขด้วยเครื่องหมายดอกจัน <code>*</code></li><li><b>สามเหลี่ยมชิดซ้าย (Left-aligned):</b> ตัดลูปช่องว่าง (Spaces Loop) ทิ้งไป จะได้สามเหลี่ยมมุมฉาก</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>จุดที่ห้ามทำผิด:</b> 1. ใช้เครื่องหมาย <code>^</code> แทนยกกำลัง (เช่น <code>2 ^ col</code>) ซึ่งผิด เพราะใน Java ต้องใช้ <code>(int)Math.pow(2, col)</code><br>2. ลืมหรือคำนวณจำนวนช่องว่างผิด ทำให้ตัวเลขเอียงกลายเป็นสามเหลี่ยมมุมฉาก ไม่ใช่พีระมิดหน้าจั่วกึ่งกลาง<br>3. ไม่ใช้ <code>%4d</code> ทำให้เมื่อตัวเลขหลักสิบ (16, 32, 64) โผล่มาแล้วตำแหน่งของคอลัมน์จะเบี้ยวทันที
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+    <div class="page-break"></div>
+    <h1 class="ch-header">บทที่ 3: Methods Part 1: Value-Returning & Math Methods (Lab 10A — 5 Exercises)</h1>
+    <p><b>ภาพรวมเนื้อหา:</b> การประกาศ Method คืนค่า, Parameters, การเรียกใช้ซ้อน (Nested Calls), และการจำแนกรูปทรงเรขาคณิต</p>
+    
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 15: Ex 1-2: การสร้าง Method คืนค่า และการเรียกใช้แบบซ้อน (Nested Method Calls)</h3>
+          <div>
+            <span class="badge badge-cat">Value-Returning Method & Method Chaining</span>
+            <span class="badge badge-file">Lab10A_Methods1/TestMax.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เรียนรู้โครงสร้างการประกาศฟังก์ชันที่ส่งค่ากลับ (Value-returning method), การส่งผ่าน Parameters, และเทคนิคการเรียก Method ซ้อนกันเพื่อหาค่ามากสุดในหลายตัวแปร
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (TestMax.java):</b>
+          <div class="code-container">// SE101 - Lab 10A: Exercise 1 &amp; 2 (TestMax.java)
+public class TestMax {
+    public static void main(String[] args) {
+        int i = 5;
+        int j = 2;
+        int x = 9;
+        int y = 7;
+
+        // Exercise 1: Max between two numbers
+        int k = max(i, j);
+        System.out.println(&quot;Max = &quot; + k);
+
+        // Exercise 2: Max among four numbers using nested max() calls
+        int max4 = max(max(i, j), max(x, y));
+        System.out.println(&quot;The maximum between &quot; + i + &quot;, &quot; + j + &quot;, &quot; + x + &quot; and &quot; + y + &quot; is &quot; + max4);
+    }
+
+    public static int max(int num1, int num2) {
+        int result;
+        if (num1 &gt; num2) {
+            result = num1;
+        } else {
+            result = num2;
+        }
+        return result;
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>สร้าง Method <code>public static int max(int num1, int num2)</code></li><li>ภายใน Method: ใช้เงื่อนไข <code>if (num1 > num2) return num1; else return num2;</code></li><li>ใน <code>main()</code>: ทดสอบเรียกใช้ด้วยตัวเลข 2 ตัว <code>int k = max(i, j);</code></li><li>เทคนิค <b>Nested Method Calls</b> หาค่ามากสุดจาก 4 ตัวแปร (i, j, k, l):<br><code>int largest = max(max(i, j), max(k, l));</code><br>- Java จะคำนวณ <code>max(i, j)</code> ก่อน<br>- ตามด้วยคำนวณ <code>max(k, l)</code><br>- แล้วนำผลลัพธ์ของทั้งสองคู่มาหา <code>max()</code> อีกครั้งในรอบสุดท้าย</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างการหา Max ของ 4 ตัวแปร (i = 5, j = 2, k = 14, l = 9):
+1. คำนวณ max(5, 2)   -&gt; คืนค่า 5
+2. คำนวณ max(14, 9)  -&gt; คืนค่า 14
+3. คำนวณ max(5, 14)  -&gt; คืนค่า 14
+ผลลัพธ์: The largest number is 14</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เขียนสั้นด้วย Ternary:</b> <code>public static int max(int a, int b) { return (a > b) ? a : b; }</code></li><li><b>Method Overloading สำหรับชนิด double:</b> ประกาศ <code>public static double max(double a, double b)</code> ชื่อเหมือนกันแต่ parameter ต่างชนิดกัน</li><li><b>หาค่าต่ำสุด (Min):</b> เปลี่ยนเครื่องหมาย <code>></code> เป็น <code><</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            เขียนคำสั่ง <code>return</code> ไม่ครอบคลุมทุกกิ่งก้านของเงื่อนไข เช่น ใส่ return เฉพาะใน if แต่ลืม else ทำให้คอมไพเลอร์แจ้งเตือน <code>Missing return statement</code>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 16: Ex 3: ฟังก์ชันคำนวณผลรวมในช่วงจำนวนเต็ม (Sum of Range Method)</h3>
+          <div>
+            <span class="badge badge-cat">Method with Parameters & Accumulator</span>
+            <span class="badge badge-file">Lab10A_Methods1/SumRange.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการแยกฟังก์ชันคำนวณผลรวมตัวเลขจากขอบเขตเริ่มต้นถึงสิ้นสุด เพื่อให้โค้ดส่วนคำนวณสามารถนำกลับมาใช้ซ้ำ (Reusable) ได้หลายครั้ง
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (SumRange.java):</b>
+          <div class="code-container">// SE101 - Lab 10A: Exercise 3 (SumRange.java)
+public class SumRange {
+    public static void main(String[] args) {
+        System.out.println(&quot;Sum from 1 to 10 is &quot; + sum(1, 10));
+        System.out.println(&quot;Sum from 20 to 30 is &quot; + sum(20, 30));
+        System.out.println(&quot;Sum from 35 to 45 is &quot; + sum(35, 45));
+    }
+
+    public static int sum(int i1, int i2) {
+        int total = 0;
+        for (int i = i1; i &lt;= i2; i++) {
+            total += i;
+        }
+        return total;
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>ประกาศ Method: <code>public static int sum(int i1, int i2)</code> รับขอบเขตล่าง <code>i1</code> และขอบเขตบน <code>i2</code></li><li>ภายใน Method: สร้างตัวแปร <code>int result = 0;</code></li><li>วนลูปสะสมผลรวม: <code>for (int i = i1; i <= i2; i++) result += i;</code></li><li>ส่งผลลัพธ์กลับ: <code>return result;</code></li><li>ใน <code>main()</code>: เรียกใช้งานฟังก์ชันซ้ำ 3 ครั้งในช่วงต่างๆ ได้แก่ 1 ถึง 10, 20 ถึง 37, และ 35 ถึง 49</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ผลลัพธ์การเรียกใช้งานแต่ละช่วง:
+- sum(1, 10):  1 + 2 + ... + 10 = 55
+- sum(20, 37): 20 + 21 + ... + 37 = 513
+- sum(35, 49): 35 + 36 + ... + 49 = 630
+
+หน้าจอ Output:
+Sum from 1 to 10 is 55
+Sum from 20 to 37 is 513
+Sum from 35 to 49 is 630</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>กรณีขอบเขตกลับด้าน (i1 > i2):</b> เพิ่มการสลับค่าก่อนวนลูป:<br><code>if (i1 > i2) { int t = i1; i1 = i2; i2 = t; }</code></li><li><b>คำนวณด้วยสูตรคณิตศาสตร์:</b> $(i1 + i2) \times (i2 - i1 + 1) / 2$ ทำงานเร็วในเวลา $O(1)$</li><li><b>หาผลรวมเฉพาะเลขคู่ในช่วง:</b> เพิ่มเงื่อนไข <code>if (i % 2 == 0)</code> ภายในลูป</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            กำหนดเงื่อนไขลูปเป็น <code>i < i2</code> แทนที่จะเป็น <code>i <= i2</code> ทำให้ตัวเลขตัวสุดท้าย (i2) ไม่ถูกนำไปบวกด้วย เกิดข้อผิดพลาด Off-by-one
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 17: Ex 4: ฟังก์ชันแปลงอุณหภูมิสองทาง (Two-Way Temperature Converter)</h3>
+          <div>
+            <span class="badge badge-cat">Mathematical Formulas & Floating-Point Methods</span>
+            <span class="badge badge-file">Lab10A_Methods1/TempConverter.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างฟังก์ชันคณิตศาสตร์แปลงเซลเซียสเป็นฟาเรนไฮต์ และฟาเรนไฮต์เป็นเซลเซียส พร้อมพิมพ์ตารางเปรียบเทียบค่าคู่ขนาน
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (TempConverter.java):</b>
+          <div class="code-container">// SE101 - Lab 10A: Exercise 4 (TempConverter.java)
+import java.util.Scanner;
+
+public class TempConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String continueChoice;
+
+        do {
+            System.out.print(&quot;Convert (C/F): &quot;);
+            String choice = scanner.next().trim().toUpperCase();
+
+            System.out.print(&quot;Enter temperature: &quot;);
+            double temp = scanner.nextDouble();
+
+            if (choice.equals(&quot;C&quot;)) {
+                double fahrenheit = celsiusToFahrenheit(temp);
+                System.out.printf(&quot;%.1f °C = %.2f °F%n&quot;, temp, fahrenheit);
+            } else if (choice.equals(&quot;F&quot;)) {
+                double celsius = fahrenheitToCelsius(temp);
+                System.out.printf(&quot;%.1f °F = %.2f °C%n&quot;, temp, celsius);
+            } else {
+                System.out.println(&quot;Invalid choice! Choose C or F.&quot;);
+            }
+
+            System.out.print(&quot;Another conversion? (yes/no): &quot;);
+            continueChoice = scanner.next().trim().toLowerCase();
+
+        } while (continueChoice.equals(&quot;yes&quot;) || continueChoice.equals(&quot;y&quot;));
+
+        System.out.println(&quot;Goodbye!&quot;);
+        scanner.close();
+    }
+
+    public static double celsiusToFahrenheit(double c) {
+        return (9.0 / 5) * c + 32;
+    }
+
+    public static double fahrenheitToCelsius(double f) {
+        return (5.0 / 9) * (f - 32);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>Method แปลง C เป็น F: <code>public static double celsiusToFahrenheit(double c)</code><br>สูตร: <code>return (9.0 / 5) * c + 32;</code></li><li>Method แปลง F เป็น C: <code>public static double fahrenheitToCelsius(double f)</code><br>สูตร: <code>return (5.0 / 9) * (f - 32);</code></li><li>ใน <code>main()</code>: วนลูป <code>for (double c = 40.0, f = 120.0; c >= 31.0; c--, f -= 10)</code></li><li>เรียกฟังก์ชันแปลงค่าทั้งสองฝั่ง และจัดรูปแบบตารางด้วย <code>printf</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ผลการแปลงอุณหภูมิในตาราง:
+Celsius    Fahrenheit  |  Fahrenheit  Celsius   
+------------------------------------------------
+40.0       104.00      |  120.0       48.89     
+39.0       102.20      |  110.0       43.33     
+38.0       100.40      |  100.0       37.78     
+...
+32.0       89.60       |   40.0        4.44     
+31.0       87.80       |   30.0       -1.11     </div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>แปลงเป็นเคลวิน (Kelvin):</b> $K = C + 273.15$</li><li><b>รับค่าอุณหภูมิจากผู้ใช้:</b> ใช้ Scanner ให้ผู้ใช้เลือกโหมด 1: C->F หรือ 2: F->C</li><li><b>เพิ่มข้อความเตือนความร้อน:</b> เช็คว่าหาก $F > 100$ ให้พิมพ์ '(Warning: Hot)'</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ข้อผิดพลาดร้ายแรงที่สุด:</b> เขียนสูตรเป็น <code>(9 / 5) * c + 32</code> โดยไม่ใส่ทศนิยม <code>.0</code> ใน Java <code>9 / 5</code> เป็นการหารจำนวนเต็ม ได้ผลลัพธ์เป็น <b>1</b> เสมอ ทำให้สูตรกลายเป็น $1 \times c + 32$ ซึ่งผิดทั้งหมด! ต้องเขียน <code>(9.0 / 5)</code> หรือ <code>(9.0 / 5.0)</code>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 18: Ex 5: การคำนวณระยะห่างระหว่างจุด 2 มิติ (Euclidean Distance)</h3>
+          <div>
+            <span class="badge badge-cat">Math Library & Multi-parameter Method</span>
+            <span class="badge badge-file">Lab10A_Methods1/Distance.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างฟังก์ชันรับพิกัด 4 จุด $(x_1, y_1)$ และ $(x_2, y_2)$ แล้วคำนวณระยะทางแบบยูคลิดโดยใช้ฟังก์ชันจากคลาส <code>Math</code>
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Distance.java):</b>
+          <div class="code-container">// SE101 - Lab 10A: Exercise 5 (Distance.java)
+import java.util.Scanner;
+
+public class Distance {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(&quot;Enter point 1 (x y): &quot;);
+        double x1 = scanner.nextDouble();
+        double y1 = scanner.nextDouble();
+
+        System.out.print(&quot;Enter point 2 (x y): &quot;);
+        double x2 = scanner.nextDouble();
+        double y2 = scanner.nextDouble();
+
+        double dist = distance(x1, y1, x2, y2);
+        System.out.printf(&quot;Distance = %.2f%n&quot;, dist);
+
+        scanner.close();
+    }
+
+    public static double distance(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>ประกาศ Method: <code>public static double distance(double x1, double y1, double x2, double y2)</code></li><li>คำนวณผลต่างพิกัด: $\Delta x = x_2 - x_1$ และ $\Delta y = y_2 - y_1$</li><li>ใช้สูตรระยะทาง: $d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$</li><li>เขียนคำนวณใน Java: <code>return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));</code></li><li>ใน <code>main()</code>: รับพิกัดทั้ง 4 ค่าจาก Scanner แล้วส่งเข้า Method แสดงผลด้วยทศนิยม 2 ตำแหน่ง</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างการคำนวณพิกัด (x1=1.5, y1=-3.4) ถึง (x2=4.0, y2=5.0):
+Δx = 4.0 - 1.5 = 2.5   -&gt; (2.5)^2 = 6.25
+Δy = 5.0 - (-3.4) = 8.4 -&gt; (8.4)^2 = 70.56
+ผลรวม = 6.25 + 70.56 = 76.81
+ระยะทาง = sqrt(76.81) = 8.764...
+
+หน้าจอ Output:
+The distance between the two points is 8.76</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>คำนวณกำลังสองโดยไม่ใช้ Math.pow:</b> <code>double dx = x2 - x1; double dy = y2 - y1; return Math.sqrt(dx * dx + dy * dy);</code> ซึ่งทำงานเร็วกว่า</li><li><b>ระยะทางใน 3 มิติ (3D Distance):</b> รับ $z_1, z_2$ เพิ่ม แล้วคำนวณ $\sqrt{\Delta x^2 + \Delta y^2 + \Delta z^2}$</li><li><b>Manhattan Distance:</b> $|x_2 - x_1| + |y_2 - y_1|$ โดยใช้ <code>Math.abs()</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ใช้เครื่องหมาย <code>^</code> คิดว่าเป็นการยกกำลัง เช่น <code>(x2 - x1)^2</code> ในภาษา Java ไม่สามารถใช้เครื่องหมายนี้ยกกำลังเลขทศนิยมได้ ต้องใช้ <code>Math.pow()</code> หรือคูณตัวมันเอง
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 19: Ex 6: การตรวจสอบความถูกต้องและจำแนกชนิดของสามเหลี่ยม (Triangle Classifier)</h3>
+          <div>
+            <span class="badge badge-cat">Geometry Logic & Method Returning String</span>
+            <span class="badge badge-file">Lab10A_Methods1/Triangle.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างฟังก์ชันตรวจสอบความถูกต้องของด้านสามเหลี่ยม (Triangle Inequality Theorem) และจำแนกประเภทเป็น สามเหลี่ยมด้านเท่า, หน้าจั่ว, หรือด้านไม่เท่า
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Triangle.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class Triangle {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter sides: &quot;);
+        double a = sc.nextDouble(), b = sc.nextDouble(), c = sc.nextDouble();
+        System.out.println(classifyTriangle(a, b, c));
+        sc.close();
+    }
+
+    public static String classifyTriangle(double a, double b, double c) {
+        if (a + b &lt;= c || a + c &lt;= b || b + c &lt;= a)
+            return &quot;These sides cannot form a valid triangle.&quot;;
+        if (a == b &amp;&amp; b == c)
+            return &quot;The sides form an Equilateral triangle.&quot;;
+        if (a == b || b == c || a == c)
+            return &quot;The sides form an Isosceles triangle.&quot;;
+        return &quot;The sides form a Scalene triangle.&quot;;
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>ประกาศ Method: <code>public static String classifyTriangle(double a, double b, double c)</code></li><li><b>ขั้นตอนที่ 1: ตรวจสอบความถูกต้อง (Validity Check):</b><br>ผลรวมของความยาวด้านสองด้านใดๆ ต้องมากกว่าด้านที่สามเสมอ:<br><code>if (a + b <= c || a + c <= b || b + c <= a) return "Invalid: Not a triangle.";</code></li><li><b>ขั้นตอนที่ 2: จำแนกสามเหลี่ยมด้านเท่า (Equilateral):</b><br>ด้านทั้งสามยาวเท่ากันทั้งหมด:<br><code>if (a == b && b == c) return "The sides form an Equilateral triangle.";</code></li><li><b>ขั้นตอนที่ 3: จำแนกสามเหลี่ยมหน้าจั่ว (Isosceles):</b><br>มีสองด้านใดๆ ยาวเท่ากัน:<br><code>else if (a == b || b == c || a == c) return "The sides form an Isosceles triangle.";</code></li><li><b>ขั้นตอนที่ 4: สามเหลี่ยมด้านไม่เท่า (Scalene):</b><br><code>else return "The sides form a Scalene triangle.";</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ทดสอบกรณีต่างๆ:
+1. ด้าน (3, 3, 3) -&gt; a==b &amp;&amp; b==c -&gt; &quot;Equilateral triangle&quot;
+2. ด้าน (5, 5, 8) -&gt; a==b -&gt; &quot;Isosceles triangle&quot;
+3. ด้าน (3, 4, 5) -&gt; ไม่เท่ากันสักด้าน -&gt; &quot;Scalene triangle&quot;
+4. ด้าน (1, 2, 5) -&gt; 1 + 2 &lt;= 5 -&gt; &quot;Invalid: Not a triangle.&quot; </div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>แยกเป็น Method boolean ตรวจสอบความถูกต้อง:</b> <code>public static boolean isValidTriangle(double a, double b, double c)</code></li><li><b>คำนวณพื้นที่สามเหลี่ยมด้วยสูตรเฮรอน (Heron's Formula):</b> $s = (a+b+c)/2$ และ $\text{Area} = \sqrt{s(s-a)(s-b)(s-c)}$</li><li><b>เช็คสามเหลี่ยมมุมฉาก (Right Triangle):</b> ใช้ทฤษฎีบทพีทาโกรัส $a^2 + b^2 == c^2$</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ลำดับเงื่อนไขผิด:</b> ถ้าเช็ค Isosceles (สองด้านเท่ากัน) <i>ก่อน</i> เช็ค Equilateral (สามด้านเท่ากัน) สามเหลี่ยมด้านเท่าจะถูกดักจับกลายเป็นหน้าจั่วทันที เพราะสามเหลี่ยมด้านเท่าก็มีสองด้านเท่ากันเข้าเงื่อนไข isosceles เสมอ ต้องเช็ค <b>Equilateral ก่อนเสมอ</b>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+    <div class="page-break"></div>
+    <h1 class="ch-header">บทที่ 4: Methods Part 2: Void, Modular Design & Pass-by-Value (Lab 10B — 6 Exercises)</h1>
+    <p><b>ภาพรวมเนื้อหา:</b> กลไก Pass-by-Value, Helper Methods คืนค่า boolean, Void Methods วาดกรอบข้อความ, และตารางสูตรคูณ</p>
+    
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 20: Ex 1: การส่งผ่านค่าแบบ Pass-by-Value ในภาษา Java</h3>
+          <div>
+            <span class="badge badge-cat">Parameter Passing Mechanics</span>
+            <span class="badge badge-file">Lab10B_NestedMethods_VoidMethods/PassByValue.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            พิสูจน์และทำความเข้าใจกลไก Pass-by-Value ของตัวแปรชนิด Primitive (int, double, boolean) ว่าการแก้ไขค่าพารามิเตอร์ภายใน Method จะไม่ส่งผลกระทบต่อตัวแปรต้นทางในฟังก์ชันผู้เรียก
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (PassByValue.java):</b>
+          <div class="code-container">public class PassByValue {
+    public static void main(String[] args) {
+        int num = 10;
+        System.out.println(&quot;Before: num = &quot; + num);
+        increment(num);
+        System.out.println(&quot;After:  num = &quot; + num);
+    }
+
+    public static void increment(int n) {
+        n = n + 1;
+        System.out.println(&quot;Inside: n = &quot; + n);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>ใน <code>main()</code> ประกาศตัวแปร <code>int x = 1;</code></li><li>แสดงค่าก่อนเรียก Method: <code>"Before the call, x is 1"</code></li><li>เรียกใช้ Method: <code>increment(x);</code> โดย Java จะทำการ <b>Copy ค่า 1</b> ไปใส่ไว้ในพารามิเตอร์ <code>n</code> ของ Method</li><li>ใน Method <code>increment(int n)</code>: สั่ง <code>n++;</code> ทำให้ตัวแปร copy (n) มีค่ากลายเป็น 2</li><li>กลับมาที่ <code>main()</code>: พิมพ์ค่าตัวแปร x อีกครั้ง ค่าของ x ใน main ยังคงเป็น <b>1</b> เท่าเดิมไม่เปลี่ยนแปลง</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ลำดับและสถานะตัวแปรในหน่วยความจำ:
+1. main() เริ่มทำงาน: สร้างกล่องตัวแปร x = 1 ใน main stack frame
+2. เรียก increment(x): สร้าง stack frame ใหม่สำหรับ increment มีกล่อง n = 1 (copy จาก x)
+3. ภายใน increment: n++ -&gt; กล่อง n เปลี่ยนเป็น 2
+4. increment ทำงานจบ: stack frame ของ increment ถูกทำลายทิ้งไป
+5. main() ทำงานต่อ: กล่องตัวแปร x ยังคงมีค่าเป็น 1 เสมอ!
+
+หน้าจอ Output:
+Before the call, x is 1
+n inside the method is 2
+After the call, x is 1</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>ต้องการให้ค่าใน main เปลี่ยน:</b> ต้องให้ Method คืนค่ากลับมา แล้วรับค่าทับ:<br><code>x = increment(x);</code> โดย Method นิยาม <code>public static int increment(int n) { return n + 1; }</code></li><li><b>เปรียบเทียบกับ Array (Pass-by-Reference):</b> หากส่ง Array เข้าไป การแก้ค่าสมาชิกใน Array ภายใน Method <i>จะทำให้ Array ต้นทางเปลี่ยนไปด้วยจริง</i></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            เข้าใจผิดว่าเมื่อตั้งชื่อพารามิเตอร์ให้ตรงกับชื่อตัวแปรใน main (เช่น ใช้ <code>int x</code> เหมือนกันทั้งใน main และใน method) แล้วค่าจะเปลี่ยนตามกัน ใน Java เป็นคนละตัวแปรและอยู่คนละขอบเขต (Scope) เสมอ
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 21: Ex 2: การแยกฟังก์ชันหา ห.ร.ม. แบบ Modular Design</h3>
+          <div>
+            <span class="badge badge-cat">Modular Algorithm Design</span>
+            <span class="badge badge-file">Lab10B_NestedMethods_VoidMethods/GCDModular.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการแยกส่วนตรรกะการคำนวณ ห.ร.ม. ออกจากฟังก์ชัน main เพื่อให้โค้ดเป็นระเบียบ อ่านง่าย และสามารถนำฟังก์ชัน <code>gcd(n1, n2)</code> ไปเรียกซ้ำในโจทย์อื่นๆ ได้
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (GCDModular.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class GCDModular {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print(&quot;Enter n1: &quot;);
+        int n1 = input.nextInt();
+        System.out.print(&quot;Enter n2: &quot;);
+        int n2 = input.nextInt();
+
+        int result1 = gcd(n1, n2);
+        System.out.println(&quot;GCD(&quot; + n1 + &quot;, &quot; + n2 + &quot;) = &quot; + result1);
+
+        int newN1 = n1 * 2;
+        int newN2 = n2 * 3;
+        int result2 = gcd(newN1, newN2);
+        System.out.println(&quot;GCD(&quot; + newN1 + &quot;, &quot; + newN2 + &quot;) = &quot; + result2);
+    }
+
+    public static int gcd(int n1, int n2) {
+        int gcd = 1;
+        int min = Math.min(n1, n2);
+        for (int k = 2; k &lt;= min; k++) {
+            if (n1 % k == 0 &amp;&amp; n2 % k == 0) {
+                gcd = k;
+            }
+        }
+        return gcd;
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>แยกการคำนวณออกเป็น Method แยกต่างหาก:<br><code>public static int gcd(int n1, int n2)</code></li><li>ภายใน Method: ทำงานด้วย Brute-force หรือ Euclidean Algorithm แล้วส่งค่า <code>return gcd;</code></li><li>ในฟังก์ชัน <code>main()</code>: รับหน้าที่เฉพาะการติดต่อกับผู้ใช้ (User Interface) รับตัวเลข n1, n2 จาก Scanner</li><li>เรียกใช้ฟังก์ชัน <code>int result = gcd(n1, n2);</code> แล้วนำผลลัพธ์มาพิมพ์แสดงอย่างสวยงาม</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">การส่งผ่านข้อมูล:
+main() รับค่า: n1 = 45, n2 = 75
+main() ส่งค่าไปยัง: gcd(45, 75)
+gcd() คำนวณ: ตัวหารร่วมมากคือ 15 แล้ว return 15
+main() รับผลลัพธ์และพิมพ์: &quot;The greatest common divisor for 45 and 75 is 15&quot; </div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>รองรับตัวเลขติดลบ:</b> ใส่ <code>n1 = Math.abs(n1); n2 = Math.abs(n2);</code> ที่บรรทัดแรกของ gcd method</li><li><b>หา ห.ร.ม. ของ 3 ตัวเลข:</b> เรียกซ้อนกัน <code>int result = gcd(gcd(a, b), c);</code></li><li><b>ตรวจสอบว่าเป็นจำนวนเฉพาะสัมพัทธ์ (Coprime) หรือไม่:</b> <code>boolean isCoprime = (gcd(a, b) == 1);</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            เขียนคำสั่งพิมพ์ System.out.println() ไว้ภายใน Method gcd() แทนที่จะ return ค่าออกมา การทำเช่นนี้ทำให้ Method ไม่สามารถนำผลลัพธ์ไปคำนวณต่อในจุดอื่นได้ Method คำนวณที่ดีควร <b>return ค่า</b> ออกมา
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 22: Ex 3: สถาปัตยกรรมแยกส่วนฟังก์ชันจำนวนเฉพาะ (Helper Method & Display Method)</h3>
+          <div>
+            <span class="badge badge-cat">Boolean Helper Method & Separation of Concerns</span>
+            <span class="badge badge-file">Lab10B_NestedMethods_VoidMethods/PrimeMethod.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เรียนรู้การแบ่งหน้าที่การทำงาน (Separation of Concerns) โดยสร้าง Helper Method ชื่อ <code>isPrime()</code> คืนค่า boolean เพื่อนำไปใช้ร่วมกับ Method จัดการแสดงผล
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (PrimeMethod.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class PrimeMethod {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print(&quot;Enter max: &quot;);
+        int max = input.nextInt();
+        findPrimes(max);
+    }
+
+    public static boolean isPrime(int n) {
+        if (n &lt;= 1)
+            return false;
+        // เช็คการหารลงตัวแค่ถึงรากที่สองของ n ก็พอ (เพื่อความรวดเร็ว)
+        for (int i = 2; i &lt;= Math.sqrt(n); i++) {
+            if (n % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    public static void findPrimes(int max) {
+        int count = 0;
+        for (int i = 2; i &lt;= max; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + &quot; &quot;);
+                count++;
+                // พิมพ์ขึ้นบรรทัดใหม่เมื่อครบ 10 ตัว
+                if (count % 10 == 0) {
+                    System.out.println();
+                }
+            }
+        }
+        // ถ้าตัวสุดท้ายไม่ได้จบที่ตัวที่ 10 พอดี ให้ขึ้นบรรทัดใหม่ก่อนสรุปผล
+        if (count % 10 != 0 &amp;&amp; count &gt; 0) {
+            System.out.println();
+        }
+        System.out.println(&quot;Total primes found: &quot; + count);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>สร้าง Helper Method: <code>public static boolean isPrime(int number)</code><br>- หากตัวเลข <= 1 คืนค่า false ทันที<br>- วนลูปทดสอบตัวหาร 2 ถึง number / 2: หากหารลงตัว <code>return false;</code> ทันที (Early Exit)<br>- หากผ่านลูปได้โดยไม่มีตัวหารลงตัว แสดงว่าเป็นจำนวนเฉพาะ <code>return true;</code></li><li>สร้าง Display Method: <code>public static void printPrimeNumbers(int numberOfPrimes)</code><br>- วนลูปค้นหาและนับจำนวนเฉพาะโดยเรียกใช้ <code>if (isPrime(number))</code><br>- จัดรูปแบบการพิมพ์ 10 จำนวนต่อบรรทัด</li><li>ใน <code>main()</code>: เรียกเพียงคำสั่งเดียว <code>printPrimeNumbers(50);</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">การเรียกทำงานร่วมกัน:
+printPrimeNumbers(50) เริ่มที่ number = 2
+-&gt; เรียก isPrime(2) -&gt; return true -&gt; พิมพ์ 2, count = 1
+-&gt; เรียก isPrime(3) -&gt; return true -&gt; พิมพ์ 3, count = 2
+-&gt; เรียก isPrime(4) -&gt; return false -&gt; ไม่พิมพ์
+...
+จนกระทั่ง count = 50 จึงหยุดการทำงาน</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>นับจำนวนเฉพาะในช่วง [start, end]:</b> สร้าง Method <code>public static int countPrimes(int start, int end)</code></li><li><b>คืนค่าเป็น Array ของจำนวนเฉพาะ:</b> <code>public static int[] getFirstNPrimes(int n)</code></li><li><b>Optimized Primality:</b> ตรวจเฉพาะเลขคี่หลังเช็คเลข 2 แล้ว</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ลืมดักจับกรณีเลข 0 หรือ 1 ในฟังก์ชัน <code>isPrime()</code> เลข 1 ไม่ใช่จำนวนเฉพาะตามนิยามคณิตศาสตร์ หากไม่ดัก <code>if (number <= 1) return false;</code> จะทำให้โปรแกรมมอง 1 เป็นจำนวนเฉพาะ
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 23: Ex 4: การค้นหาจำนวนสมบูรณ์ (Perfect Numbers up to 10,000)</h3>
+          <div>
+            <span class="badge badge-cat">Divisor Summation & Number Theory</span>
+            <span class="badge badge-file">Lab10B_NestedMethods_VoidMethods/Perfectnumber.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เข้าใจนิยามของจำนวนสมบูรณ์ (Perfect Number คือ จำนวนเต็มบวกที่มีค่าเท่ากับผลรวมของตัวหารแท้ทั้งหมดที่ไม่รวมตัวมันเอง เช่น 6 = 1 + 2 + 3) และการค้นหาในช่วงตัวเลขขนาดใหญ่
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (Perfectnumber.java):</b>
+          <div class="code-container">public class Perfectnumber {
+    public static void main(String[] args) {
+        // วนลูปเพื่อหา Perfect Number ที่มีค่าน้อยกว่า 10000
+        for (int i = 1; i &lt; 10000; i++) {
+            if (isPerfect(i)) {
+                System.out.println(i + &quot; is a perfect number&quot;);
+            }
+        }
+    }
+
+    public static boolean isPerfect(int number) {
+        int sum = 0;
+        // ลูปหาตัวหารทั้งหมด (ยกเว้นตัวมันเอง)
+        for (int k = 1; k &lt; number; k++) {
+            // ถ้าหารลงตัว ให้นำไปบวกใน sum
+            if (number % k == 0) {
+                sum += k;
+            }
+        }
+        // ถ้าผลรวมเท่ากับตัวมันเองพอดี จะถือว่าเป็น Perfect Number (return true)
+        return sum == number;
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>สร้าง Method ตรวจสอบ: <code>public static boolean isPerfect(int n)</code></li><li>ภายใน Method: สร้างตัวแปรสะสมผลรวมตัวหาร <code>int sum = 0;</code></li><li>วนลูปหาตัวหารแท้: <code>for (int d = 1; d < n; d++)</code> (ย้ำว่า d < n ไม่รวมตัวมันเอง)</li><li>ถ้า d หาร n ลงตัว: <code>if (n % d == 0) sum += d;</code></li><li>ส่งผลลัพธ์: <code>return (sum == n);</code> (จริงเมื่อผลรวมตัวหารเท่ากับ n พอดี)</li><li>ใน <code>main()</code>: วนลูปทดสอบตั้งแต่ 1 ถึง 10,000 หาก <code>isPerfect(i)</code> เป็นจริงให้แสดงผล</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">การตรวจสอบตัวเลขตัวอย่าง:
+- เลข 6: ตัวหารแท้คือ 1, 2, 3 -&gt; sum = 1 + 2 + 3 = 6 == 6 -&gt; True (เป็น Perfect Number!)
+- เลข 28: ตัวหารแท้คือ 1, 2, 4, 7, 14 -&gt; sum = 28 == 28 -&gt; True (เป็น Perfect Number!)
+- เลข 10: ตัวหารแท้คือ 1, 2, 5 -&gt; sum = 8 != 10 -&gt; False
+
+ผลการรันหาตั้งแต่ 1 ถึง 10,000:
+The perfect numbers between 1 and 10000 are:
+6
+28
+496
+8128</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เพิ่มประสิทธิภาพ:</b> วนลูปหาตัวหารแค่ <code>d <= n / 2</code> เพราะตัวหารแท้ที่ใหญ่ที่สุดไม่มีทางเกินครึ่งหนึ่งของตัวเลข</li><li><b>จำนวนบกพร่อง (Deficient) และจำนวนเกิน (Abundant):</b> ถ้า sum < n เรียก Deficient, ถ้า sum > n เรียก Abundant</li><li><b>พิมพ์ตัวหารแท้แจกแจงออกมา:</b> แสดง <code>6 = 1 + 2 + 3</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            วนลูปโดยใช้ <code>d <= n</code> (มีเครื่องหมายเท่ากับ) ทำให้ตัวเลขตัวมันเองถูกบวกเข้าไปใน sum ด้วย ผลรวมจะกลายเป็น $2n$ เสมอ และไม่มีทางเท่ากับ $n$ ส่งผลให้หาจำนวนสมบูรณ์ไม่เจอเลยแม้แต่ตัวเดียว
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 24: Ex 5: การสร้างกรอบข้อความด้วย Void Methods เรียกซ้อนกัน</h3>
+          <div>
+            <span class="badge badge-cat">Void Methods & Character Composition</span>
+            <span class="badge badge-file">Lab10B_NestedMethods_VoidMethods/TextBox.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้าง Void Methods ที่ไม่มีการคืนค่า เพื่อทำงานด้านการพิมพ์ข้อความ จัดองค์ประกอบทางสายตา (Visual Box Layout) และเรียกใช้ Void Method ย่อยต่อกันเป็นทอดๆ
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (TextBox.java):</b>
+          <div class="code-container">import java.util.Scanner;
+public class TextBox {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print(&quot;Enter message: &quot;);
+        String message = input.nextLine();
+        System.out.print(&quot;Enter box width: &quot;);
+        int width = input.nextInt();
+
+        printTextBox(message, width);
+    }
+
+    public static void printLine(int width, char ch) {
+        for (int i = 0; i &lt; width; i++) {
+            System.out.print(ch);
+        }
+        System.out.println();
+    }
+
+    public static void printCentered(String message, int width) {
+        int padding = (width - message.length() - 2) / 2;
+        System.out.print(&quot;*&quot;);
+        for (int i = 0; i &lt; padding; i++) {
+            System.out.print(&quot; &quot;);
+        }
+        System.out.print(message);
+
+        // เผื่อกรณีที่ความกว้างและข้อความหารกันแล้วเหลือเศษ
+        // ต้องเติมช่องว่างด้านหลังให้พอดี
+        int rightPadding = width - message.length() - 2 - padding;
+        for (int i = 0; i &lt; rightPadding; i++) {
+            System.out.print(&quot; &quot;);
+        }
+        System.out.println(&quot;*&quot;);
+    }
+
+    public static void printTextBox(String message, int width) {
+        printLine(width, &#x27;*&#x27;);
+        printCentered(message, width);
+        printLine(width, &#x27;*&#x27;);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>Method พิมพ์เส้นขอบแนวนอน: <code>public static void printBorder(char ch, int width)</code><br>วนลูปพิมพ์ตัวอักษร ch จำนวน width ตัว แล้วขึ้นบรรทัดใหม่</li><li>Method พิมพ์ข้อความตรงกลาง: <code>public static void printCentered(String text, int width)</code><br>คำนวณช่องว่างซ้าย-ขวา: <code>(width - text.length() - 2) / 2</code> แล้วพิมพ์ขอบซ้าย ช่องว่าง ข้อความ และขอบขวา</li><li>Method ประกอบกล่อง: <code>public static void printBox(String text, int width)</code><br>เรียก <code>printBorder('+', width);</code> (ขอบบน)<br>เรียก <code>printCentered(text, width);</code> (ข้อความกลาง)<br>เรียก <code>printBorder('+', width);</code> (ขอบล่าง)</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างผลลัพธ์เมื่อเรียก printBox(&quot;Hello Java&quot;, 24):
+++++++++++++++++++++++++
++      Hello Java      +
+++++++++++++++++++++++++
+
+ความกว้างทั้งหมด: 24 ตัวอักษร
+ข้อความ: 10 ตัวอักษร, ขอบ: 2 ตัวอักษร
+ช่องว่างซ้าย-ขวา: (24 - 10 - 2) / 2 = 6 ช่องเท่ากันสองฝั่ง</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>กล่องหลายบรรทัด:</b> รับเป็น Array ของ String หรือรับ String ที่มีเครื่องหมาย \n</li><li><b>กล่องแบบมีเส้นขอบข้างว่างเปล่า:</b> เพิ่มความสูงของกล่องโดยใส่บรรทัดว่าง <code>printEmptyLine(width);</code> ด้านบนและล่างข้อความ</li><li><b>เปลี่ยนสไตล์กรอบ:</b> รับตัวอักษรมุม '+' และตัวอักษรขอบ '-' หรือ '|'</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            พยายามนำผลลัพธ์ของ Void Method ไปกำหนดค่าให้กับตัวแปร เช่น <code>int result = printBorder('*', 10);</code> จะเกิดข้อผิดพลาด <code>Type mismatch: cannot convert from void to int</code> เพราะ void method ไม่มีการคืนค่าใดๆ ทั้งสิ้น
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 25: Ex 6: การพิมพ์ตารางสูตรคูณแม่ 1-9 ด้วยระบบ Void Methods</h3>
+          <div>
+            <span class="badge badge-cat">Structured Table & Coordinated Void Methods</span>
+            <span class="badge badge-file">Lab10B_NestedMethods_VoidMethods/MultiTable.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการออกแบบโปรแกรมพิมพ์ตารางขนาดใหญ่ที่ซับซ้อน โดยแบ่งความรับผิดชอบออกเป็น Method ย่อยๆ: พิมพ์หัวตาราง, พิมพ์เส้นแบ่ง, และพิมพ์แถวข้อมูล
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (MultiTable.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class MultiTable {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter table size: &quot;);
+        int size = sc.nextInt();
+        printMultiTable(size);
+        sc.close();
+    }
+
+    public static void printDivider(int cols) {
+        System.out.print(&quot;+----&quot;);
+        for (int i = 0; i &lt; cols; i++)
+            System.out.print(&quot;+----&quot;);
+        System.out.println(&quot;+&quot;);
+    }
+
+    public static void printRow(int row, int cols) {
+        System.out.printf(&quot;%4d |&quot;, row);
+        for (int j = 1; j &lt;= cols; j++)
+            System.out.printf(&quot;%5d&quot;, row * j);
+        System.out.println();
+    }
+
+    public static void printMultiTable(int size) {
+        System.out.printf(&quot;%5s|&quot;, &quot; &quot;);
+        for (int j = 1; j &lt;= size; j++)
+            System.out.printf(&quot;%5d&quot;, j);
+        System.out.println();
+        printDivider(size);
+        for (int i = 1; i &lt;= size; i++) {
+            printRow(i, size);
+            printDivider(size);
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>Method พิมพ์หัวคอลัมน์: <code>public static void printHeader()</code> พิมพ์หมายเลข 1 ถึง 9 ในระยะห่างคอลัมน์ที่เท่ากัน</li><li>Method พิมพ์เส้นคั่นตาราง: <code>public static void printDivider()</code> พิมพ์เส้นประและเครื่องหมายบวก เช่น <code>"----+-----------------------------------"</code></li><li>Method พิมพ์เนื้อหาตาราง: <code>public static void printTable()</code> วนลูปแถว <code>row = 1..9</code> และลูปคอลัมน์ <code>col = 1..9</code><br>- พิมพ์หมายเลขแถวและเครื่องหมาย <code>" | "</code><br>- พิมพ์ผลคูณ <code>row * col</code> ด้วย <code>printf("%4d", row * col)</code></li><li>ใน <code>main()</code>: เรียกต่อกันตามลำดับ:<br><code>printHeader();</code><br><code>printDivider();</code><br><code>printTable();</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">หน้าตาตารางสูตรคูณที่ได้:
+       1   2   3   4   5   6   7   8   9
+---+------------------------------------
+ 1 |   1   2   3   4   5   6   7   8   9
+ 2 |   2   4   6   8  10  12  14  16  18
+ 3 |   3   6   9  12  15  18  21  24  27
+ 4 |   4   8  12  16  20  24  28  32  36
+ ...
+ 9 |   9  18  27  36  45  54  63  72  81</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>ตารางขนาด N x N ตามสั่ง:</b> ให้รับค่าขนาดสูงสุด <code>maxN</code> จากผู้ใช้แล้วสร้างตารางตามขนาดนั้น</li><li><b>ตารางเฉพาะสามเหลี่ยมล่าง:</b> วนลูปพิมพ์เฉพาะเมื่อ <code>col <= row</code></li><li><b>ตารางการบวก (Addition Table):</b> เปลี่ยนจากผลคูณ <code>row * col</code> เป็นผลบวก <code>row + col</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ลืมพิมพ์คำสั่ง <code>System.out.println();</code> เพื่อขึ้นบรรทัดใหม่หลังจบลูปคอลัมน์ในแต่ละแถว ทำให้ตัวเลขผลคูณทั้งหมดของทุกแถวไหลต่อกันเป็นเส้นยาวในบรรทัดเดียว
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+    <div class="page-break"></div>
+    <h1 class="ch-header">บทที่ 5: 1D Arrays (Lab 11A — 6 Exercises)</h1>
+    <p><b>ภาพรวมเนื้อหา:</b> โครงสร้าง Indexing, การรับค่าแบบ Dynamic, สถิติ Sum/Avg/Min/Max, Linear Search, กรองข้อมูล, และ In-place Swap</p>
+    
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 26: Ex 1: โครงสร้างหน่วยความจำและดัชนีของ 1D Array (Array Indexing & Traversal)</h3>
+          <div>
+            <span class="badge badge-cat">Array Basics & Indexing</span>
+            <span class="badge badge-file">Lab11A_1DArrays/TraceArray.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เข้าใจการจองพื้นที่หน่วยความจำของ Array ใน Java, ค่าเริ่มต้น (Default Value), การอ้างอิงผ่าน Index เริ่มจาก 0 ถึง length - 1, และการใช้ Attribute .length
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (TraceArray.java):</b>
+          <div class="code-container">public class TraceArray {
+    public static void main(String[] args) {
+        int[] nums = {5, 12, 3, 8, 7};
+        int total = 0;
+        for (int i = 0; i &lt; nums.length; i++) {
+            total = total + nums[i];
+            System.out.println(&quot;i=&quot; + i + &quot;  nums[i]=&quot; + nums[i] + &quot;  total=&quot; + total);
+        }
+        System.out.println(&quot;Final total = &quot; + total);
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>สร้าง Array ขนาด 5 ช่อง: <code>int[] arr = new int[5];</code> (ทุกช่องมีค่าเริ่มต้นอัตโนมัติเป็น 0)</li><li>กำหนดค่าให้แต่ละช่องด้วยลูป: <code>for (int i = 0; i < arr.length; i++) arr[i] = (i + 1) * 10;</code></li><li>วนลูปอ่านค่าและพิมพ์ออกทางหน้าจอ: <code>for (int i = 0; i < arr.length; i++) System.out.println("arr[" + i + "] = " + arr[i]);</code></li><li>ตรวจสอบขนาดของ Array: ใช้ <code>arr.length</code> (ไม่มีวงเล็บ)</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">โครงสร้างในหน่วยความจำ Heap:
+Index:   [ 0 ]   [ 1 ]   [ 2 ]   [ 3 ]   [ 4 ]
+Value:     10      20      30      40      50
+
+ความยาว (arr.length): 5
+ดัชนีตัวแรก: arr[0] = 10
+ดัชนีตัวสุดท้าย: arr[arr.length - 1] = arr[4] = 50
+
+หน้าจอ Output:
+arr[0] = 10
+arr[1] = 20
+arr[2] = 30
+arr[3] = 40
+arr[4] = 50</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>ประกาศพร้อมกำหนดค่าทันที (Array Initializer):</b> <code>int[] arr = {10, 20, 30, 40, 50};</code></li><li><b>ใช้ For-each loop อ่านค่า:</b> <code>for (int val : arr) System.out.print(val + " ");</code> (เหมาะกับการอ่าน ไม่เหมาะกับการแก้ไขค่า)</li><li><b>Array ชนิดอื่น:</b> <code>double[]</code> (default 0.0), <code>boolean[]</code> (default false), <code>String[]</code> (default null)</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ArrayIndexOutOfBoundsException:</b> พยายามเข้าถึง Index ที่เท่ากับหรือเกินขนาด เช่น เขียน <code>for (int i = 0; i <= arr.length; i++)</code> เมื่อ i เท่ากับ 5 จะเกิดข้อผิดพลาดทำให้โปรแกรมหยุดทำงานทันที
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 27: Ex 2: การจองขนาด Array แบบไดนามิกตาม Input ผู้ใช้ (Dynamic Array Input)</h3>
+          <div>
+            <span class="badge badge-cat">User Input & Dynamic Allocation</span>
+            <span class="badge badge-file">Lab11A_1DArrays/ArrayInput.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เรียนรู้การรับขนาด Array จากผู้ใช้ในขณะที่โปรแกรมทำงาน (Runtime), การสร้าง Array ด้วยขนาดที่กำหนด, และการวนลูปรับข้อมูลลง Array ทีละช่อง
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (ArrayInput.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class ArrayInput {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter array size (3-10): &quot;);
+        int n = sc.nextInt();
+
+        int[] arr = new int[n]; // สร้างอาร์เรย์ขนาด n
+        for (int i = 0; i &lt; n; i++) {
+            System.out.print(&quot;Enter element [&quot; + i + &quot;]: &quot;);
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.println(&quot;Array contents:&quot;);
+        for (int i = 0; i &lt; arr.length; i++) {
+            System.out.println(&quot;arr[&quot; + i + &quot;] = &quot; + arr[i]);
+        }
+        sc.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>รับจำนวนสมาชิกทั้งหมดจากคีย์บอร์ด: <code>int n = sc.nextInt();</code></li><li>สร้าง Array ขนาด n ช่อง: <code>int[] numbers = new int[n];</code></li><li>วนลูปรับค่าสมาชิกทีละตัว:<br><code>for (int i = 0; i < numbers.length; i++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;System.out.print("Enter element " + (i + 1) + ": ");<br>&nbsp;&nbsp;&nbsp;&nbsp;numbers[i] = sc.nextInt();<br>}</code></li><li>วนลูปแสดงข้อมูลที่ได้รับทั้งหมดเพื่อยืนยันความถูกต้อง</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างการรัน:
+Enter the number of elements: 4
+Enter element 1: 15
+Enter element 2: 42
+Enter element 3: 8
+Enter element 4: 99
+
+You entered: [15, 42, 8, 99]</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>รับข้อมูลในบรรทัดเดียว:</b> ผู้ใช้พิมพ์ตัวเลขคั่นด้วยช่องว่าง <code>15 42 8 99</code> แล้วกด Enter ครั้งเดียว Scanner จะดึงข้อมูลทีละตัวได้อย่างถูกต้อง</li><li><b>รับ Array ของทศนิยม (double[]):</b> เปลี่ยนชนิดตัวแปรและใช้ <code>sc.nextDouble()</code></li><li><b>ดักจับขนาดไม่ถูกต้อง:</b> ตรวจสอบ <code>if (n <= 0)</code> ก่อนสร้าง Array ป้องกัน <code>NegativeArraySizeException</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            สับสนระหว่าง Index ที่แสดงให้ผู้ใช้เห็นกับ Index จริงใน Array ผู้ใช้ทั่วไปคุ้นชินกับการเริ่มนับชิ้นที่ 1 (Element 1) แต่ในโค้ดต้องเก็บที่ <code>numbers[0]</code> เสมอ
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 28: Ex 3: การคำนวณสถิติครบวงจรในรอบเดียว (Sum, Average, Min, Max in Single Pass)</h3>
+          <div>
+            <span class="badge badge-cat">Array Statistics & Reduction</span>
+            <span class="badge badge-file">Lab11A_1DArrays/ArrayStats.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการเขียนอัลกอริทึมคำนวณสถิติพื้นฐาน 4 ค่า (ผลรวม, ค่าเฉลี่ย, ค่าน้อยสุด, และค่ามากสุด) พร้อมกันในลูปเดียวอย่างมีประสิทธิภาพ
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (ArrayStats.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class ArrayStats {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter array size (3-10): &quot;);
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        int sum = 0;
+
+        // รับค่าและคำนวณ sum ไปพร้อมกัน
+        for (int i = 0; i &lt; n; i++) {
+            System.out.print(&quot;Enter element [&quot; + i + &quot;]: &quot;);
+            arr[i] = sc.nextInt();
+            sum += arr[i]; // สะสมค่า sum ทันทีที่รับค่าเข้ามา
+        }
+
+        // หาค่า Minimum และ Maximum
+        int min = arr[0];
+        int max = arr[0];
+        for (int i = 1; i &lt; arr.length; i++) {
+            if (arr[i] &lt; min) {
+                min = arr[i];
+            }
+            if (arr[i] &gt; max) {
+                max = arr[i];
+            }
+        }
+
+        double average = (double) sum / arr.length;
+
+        // แสดงผลลัพธ์
+        System.out.println(&quot;Sum     = &quot; + sum);
+        System.out.printf(&quot;Average = %.2f\n&quot;, average);
+        System.out.println(&quot;Minimum = &quot; + min);
+        System.out.println(&quot;Maximum = &quot; + max);
+
+        sc.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>รับข้อมูลเข้า Array ขนาด n</li><li><b>กำหนดค่าเริ่มต้นสถิติ:</b><br>- <code>int sum = arr[0];</code> (หรือ 0)<br>- <code>int min = arr[0];</code> (ต้องใช้สมาชิกตัวแรกเสมอ!)<br>- <code>int max = arr[0];</code> (ต้องใช้สมาชิกตัวแรกเสมอ!)</li><li>วนลูปตรวจสอบตั้งแต่สมาชิกตัวที่ 2 เป็นต้นไป (Index 1 ถึง n - 1):<br><code>for (int i = 1; i < arr.length; i++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;sum += arr[i];<br>&nbsp;&nbsp;&nbsp;&nbsp;if (arr[i] < min) min = arr[i];<br>&nbsp;&nbsp;&nbsp;&nbsp;if (arr[i] > max) max = arr[i];<br>}</code></li><li>คำนวณค่าเฉลี่ย: <code>double avg = (double) sum / arr.length;</code> (ห้ามลืม cast เป็น double)</li><li>แสดงผลลัพธ์ทั้ง 4 ค่าด้วย printf</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ข้อมูลตัวอย่าง: arr = [18, 5, 42, 7, 23]
+เริ่มต้น: min = 18, max = 18, sum = 18
+i = 1 (ค่า 5):  sum = 23, min = 5,  max = 18
+i = 2 (ค่า 42): sum = 65, min = 5,  max = 42
+i = 3 (ค่า 7):  sum = 72, min = 5,  max = 42
+i = 4 (ค่า 23): sum = 95, min = 5,  max = 42
+
+ผลลัพธ์:
+Sum     = 95
+Average = 19.00
+Minimum = 5
+Maximum = 42</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>แยกเป็น Method ย่อย 4 ฟังก์ชัน:</b> <code>getSum(arr)</code>, <code>getAverage(arr)</code>, <code>getMin(arr)</code>, <code>getMax(arr)</code></li><li><b>หาตำแหน่ง Index ของ Min และ Max (ArgMin / ArgMax):</b> เก็บ <code>minIdx = i</code> และ <code>maxIdx = i</code> แทนที่จะเก็บเฉพาะตัวเลข</li><li><b>คำนวณส่วนเบี่ยงเบนมาตรฐาน (Standard Deviation):</b> วนลูปอีกรอบหา $\sum (x_i - \bar{x})^2$</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>กับดักคะแนนหาย:</b> ตั้งค่า <code>int min = 0;</code> ถ้าใน Array มีเฉพาะเลขบวก เช่น [10, 25, 40] ค่า min จะไม่ถูกอัปเดตเลยและตอบ 0 ออกมาเสมอ หรือถ้าตั้ง <code>int max = 0;</code> แล้วข้อมูลมีแต่เลขติดลบ [-5, -12, -2] จะตอบ max เป็น 0 ซึ่งผิดทั้งคู่! กฎเหล็กคือต้องตั้ง <code>min = arr[0]</code> และ <code>max = arr[0]</code>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 29: Ex 4: การค้นหาข้อมูลตามลำดับ (Linear Search & Early Break)</h3>
+          <div>
+            <span class="badge badge-cat">Searching Algorithms</span>
+            <span class="badge badge-file">Lab11A_1DArrays/LinearSearch.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างอัลกอริทึมค้นหาค่าเป้าหมาย (Target) ใน Array แบบ Linear Search โดยเปรียบเทียบทีละตัวตั้งแต่ต้นจนจบ และหยุดค้นหาทันทีเมื่อพบ (Early Break)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (LinearSearch.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class LinearSearch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter array size (3-10): &quot;);
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        for (int i = 0; i &lt; n; i++) {
+            System.out.print(&quot;Enter element [&quot; + i + &quot;]: &quot;);
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print(&quot;Enter target to search: &quot;);
+        int target = sc.nextInt();
+        int foundAt = -1; // -1 หมายถึงยังไม่พบ
+
+        for (int i = 0; i &lt; arr.length; i++) {
+            if (arr[i] == target) {
+                foundAt = i;
+                break; // หยุดลูปทันทีที่เจอ
+            }
+        }
+
+        if (foundAt != -1) {
+            System.out.println(&quot;Found &quot; + target + &quot; at index &quot; + foundAt);
+        } else {
+            System.out.println(target + &quot; not found in the array.&quot;);
+        }
+
+        sc.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>มี Array ข้อมูล และรับค่าเป้าหมายที่ต้องการค้นหา <code>int target = sc.nextInt();</code></li><li>สร้างตัวแปรเก็บตำแหน่งผลลัพธ์: <code>int foundIndex = -1;</code> (กำหนดค่าเริ่มต้นเป็น -1 เพื่อเป็นตัวแทนของ 'ยังไม่พบ')</li><li>วนลูปตรวจสอบสมาชิกทีละตัว: <code>for (int i = 0; i < arr.length; i++)</code></li><li>หากพบว่า <code>arr[i] == target</code>:<br>- บันทึกตำแหน่ง: <code>foundIndex = i;</code><br>- สั่ง <code>break;</code> ทันทีเพื่อไม่ให้เสียเวลาค้นหาต่อในช่องที่เหลือ</li><li>หลังจบลูป: ตรวจสอบ <code>if (foundIndex != -1)</code> พบข้อมูลที่ Index นั้น ถ้าเท่ากับ -1 แสดงว่าไม่พบ</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ค้นหา target = 25 ใน arr = [10, 40, 25, 80, 5]
+i = 0: arr[0] คือ 10 != 25 -&gt; ค้นหาต่อ
+i = 1: arr[1] คือ 40 != 25 -&gt; ค้นหาต่อ
+i = 2: arr[2] คือ 25 == 25 -&gt; พบแล้ว! บันทึก foundIndex = 2 แล้วสั่ง break!
+
+ผลลัพธ์: Element 25 found at index 2.</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>นับจำนวนครั้งที่พบ (Frequency Count):</b> หากต้องการหาว่ามีกี่ตัวใน Array ห้ามใส่ break ให้ใช้ตัวแปร <code>count++</code> เพื่อนับจนจบลูป</li><li><b>ค้นหาใน Array ของ String:</b> ต้องใช้ <code>arr[i].equals(target)</code> ห้ามใช้ <code>==</code></li><li><b>ค้นหาตำแหน่งสุดท้ายที่พบ:</b> วนลูปจากขวามาซ้าย <code>for (int i = arr.length - 1; i >= 0; i--)</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ใส่คำสั่ง <code>else System.out.println("Not found");</code> ไว้ <i>ภายในลูป</i> ส่งผลให้ทุกรอบที่ตรวจแล้วยังไม่ตรง จะพิมพ์คำว่า Not found ซ้ำออกมาเต็มหน้าจอ! การตรวจสอบว่าพบหรือไม่พบต้องทำ <b>หลังจบลูปเท่านั้น</b> โดยเช็คจากตัวแปร flag หรือ index
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 30: Ex 5: การกรองข้อมูลและการนับตามเงื่อนไข (Filter, Count & Above Average)</h3>
+          <div>
+            <span class="badge badge-cat">Array Filtering & Multi-pass Processing</span>
+            <span class="badge badge-file">Lab11A_1DArrays/CountFilter.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการประมวลผล Array แบบหลายรอบ (Multi-pass Processing) เพื่อกรองข้อมูลที่ตรงตามเกณฑ์ เช่น การหาจำนวนที่มากกว่าค่าเฉลี่ย หรือการคัดกรองเฉพาะเลขคู่
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (CountFilter.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class CountFilter {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter array size (3-10): &quot;);
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        int sum = 0;
+        for (int i = 0; i &lt; n; i++) {
+            System.out.print(&quot;Enter element [&quot; + i + &quot;]: &quot;);
+            arr[i] = sc.nextInt();
+            sum += arr[i];
+        }
+
+        // (a) นับและแสดงเลขคู่
+        System.out.print(&quot;Even numbers: &quot;);
+        int evenCount = 0;
+        for (int i = 0; i &lt; arr.length; i++) {
+            if (arr[i] % 2 == 0) {
+                System.out.print(arr[i] + &quot; &quot;);
+                evenCount++;
+            }
+        }
+        System.out.println(&quot;  (count = &quot; + evenCount + &quot;)&quot;);
+
+        // คำนวณค่าเฉลี่ย
+        double avg = (double) sum / arr.length;
+        System.out.printf(&quot;Average = %.2f\n&quot;, avg);
+
+        // (b) นับและแสดงตัวเลขที่มากกว่าค่าเฉลี่ย
+        System.out.print(&quot;Above average: &quot;);
+        int aboveAvgCount = 0;
+        for (int i = 0; i &lt; arr.length; i++) {
+            if (arr[i] &gt; avg) {
+                System.out.print(arr[i] + &quot; &quot;);
+                aboveAvgCount++;
+            }
+        }
+        System.out.println(&quot;  (count = &quot; + aboveAvgCount + &quot;)&quot;);
+
+        sc.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>รอบที่ 1: คำนวณผลรวมและค่าเฉลี่ยของทั้ง Array (เพราะต้องรู้ค่าเฉลี่ยก่อน จึงจะสามารถนำไปเปรียบเทียบในรอบถัดไปได้)</li><li>รอบที่ 2 (กรองข้อมูล): ประกาศตัวนับ <code>int aboveCount = 0;</code></li><li>วนลูปตรวจสอบสมาชิกทีละตัว: <code>for (int i = 0; i < arr.length; i++)</code></li><li>ตรวจสอบเงื่อนไข: <code>if (arr[i] > avg)</code><br>- พิมพ์ค่าสมาชิกตัวนั้นออกมา<br>- เพิ่มตัวนับ <code>aboveCount++;</code></li><li>แสดงจำนวนสมาชิกทั้งหมดที่ผ่านการกรอง</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ข้อมูล: arr = [10, 25, 40, 15, 30]
+รอบที่ 1: sum = 120, avg = 120 / 5.0 = 24.0
+รอบที่ 2: ตรวจสอบเงื่อนไข (&gt; 24.0):
+- 10 &gt; 24.0 (False)
+- 25 &gt; 24.0 (True)  -&gt; เข้าเกณฑ์
+- 40 &gt; 24.0 (True)  -&gt; เข้าเกณฑ์
+- 15 &gt; 24.0 (False)
+- 30 &gt; 24.0 (True)  -&gt; เข้าเกณฑ์
+
+ผลลัพธ์:
+Average = 24.00
+Elements above average: 25, 40, 30 (Count = 3)</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>สร้าง Array ใหม่เก็บเฉพาะค่าที่ผ่านเกณฑ์:</b> ต้องนับจำนวนที่ผ่านเกณฑ์ก่อน เพื่อนำไปจองขนาด Array ใหม่ <code>int[] filtered = new int[count];</code></li><li><b>กรองตามเปอร์เซ็นต์หรือเกรด:</b> เช่น คัดเฉพาะคะแนนที่มากกว่า 80 คะแนน</li><li><b>กรองเลขคู่และเลขคี่แยกกัน:</b> ใช้เงื่อนไข <code>arr[i] % 2 == 0</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            พยายามกรองข้อมูลหาค่าที่มากกว่าค่าเฉลี่ยในลูปแรกที่รับข้อมูล ซึ่งเป็นไปไม่ได้ในเชิงตรรกะ เพราะยังไม่รู้ค่าเฉลี่ยของทั้งชุดข้อมูล โจทย์ลักษณะนี้จำเป็นต้องใช้ <b>2 ลูปเสมอ</b> (ลูปแรกหา avg, ลูปสองกรองข้อมูล)
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 31: Ex 6: การสลับตำแหน่งกลับด้าน Array แบบ In-Place (Two-Pointer In-Place Swap)</h3>
+          <div>
+            <span class="badge badge-cat">In-Place Array Manipulation</span>
+            <span class="badge badge-file">Lab11A_1DArrays/ReverseArray.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างอัลกอริทึมกลับลำดับข้อมูลใน Array จากหน้าไปหลัง โดยใช้หน่วยความจำเดิมที่มีอยู่โดยไม่สร้าง Array ใหม่ (In-Place Algorithm) ด้วยเทคนิค Two Pointers
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (ReverseArray.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class ReverseArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter array size (3-10): &quot;);
+        int n = sc.nextInt();
+        
+        int[] arr = new int[n];
+        for (int i = 0; i &lt; n; i++) {
+            System.out.print(&quot;Enter element [&quot; + i + &quot;]: &quot;);
+            arr[i] = sc.nextInt();
+        }
+        
+        // พิมพ์ค่าก่อนกลับด้าน
+        System.out.print(&quot;Before: &quot;);
+        for (int i = 0; i &lt; arr.length; i++) {
+            System.out.print(arr[i] + &quot; &quot;);
+        }
+        System.out.println();
+        
+        // อัลกอริทึม In-place Reversal (สลับซ้าย-ขวา)
+        int left = 0;
+        int right = arr.length - 1;
+        while (left &lt; right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+        
+        // พิมพ์ค่าหลังกลับด้าน
+        System.out.print(&quot;After:  &quot;);
+        for (int i = 0; i &lt; arr.length; i++) {
+            System.out.print(arr[i] + &quot; &quot;);
+        }
+        System.out.println();
+        
+        sc.close();
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>กำหนดตัวชี้สองฝั่ง:<br>- <code>int left = 0;</code> (ชี้ที่หัว Array)<br>- <code>int right = arr.length - 1;</code> (ชี้ที่ท้าย Array)</li><li>วนลูปตราบเท่าที่ตัวชี้ทั้งสองยังไม่เดินมาชนหรือสวนทางกัน: <code>while (left < right)</code></li><li><b>การสลับค่า (Swap) ด้วยตัวแปรพักค่า (temp):</b><br>1. <code>int temp = arr[left];</code> (เก็บค่าซ้ายไว้ชั่วคราว)<br>2. <code>arr[left] = arr[right];</code> (เอาค่าขวามาใส่ซ้าย)<br>3. <code>arr[right] = temp;</code> (เอาค่าเดิมของซ้ายมาใส่ขวา)</li><li>ขยับตัวชี้: <code>left++;</code> (ขยับไปทางขวา) และ <code>right--;</code> (ขยับไปทางซ้าย)</li><li>เมื่อลูปจบ ข้อมูลใน Array จะถูกกลับด้านอย่างสมบูรณ์</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">จำลองการสลับ Array [1, 2, 3, 4, 5]:
+เริ่มต้น: left = 0 (ค่า 1), right = 4 (ค่า 5)
+รอบที่ 1: สลับ arr[0] กับ arr[4] -&gt; [5, 2, 3, 4, 1]
+          left เพิ่มเป็น 1, right ลดเหลือ 3
+รอบที่ 2: สลับ arr[1] กับ arr[3] -&gt; [5, 4, 3, 2, 1]
+          left เพิ่มเป็น 2, right ลดเหลือ 2
+รอบที่ 3: left = 2, right = 2 -&gt; เงื่อนไข left &lt; right เป็นเท็จ -&gt; จบลูป!
+
+ผลลัพธ์: Array กลับด้านเป็น [5, 4, 3, 2, 1] สำเร็จโดยใช้หน่วยความจำคงที่ O(1)</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>เขียนโดยใช้ For Loop แบบครึ่งทาง:</b><br><code>for (int i = 0; i < arr.length / 2; i++) { int temp = arr[i]; arr[i] = arr[arr.length - 1 - i]; arr[arr.length - 1 - i] = temp; }</code></li><li><b>สร้าง Array ใหม่มารับค่า (ไม่ In-place):</b> สร้าง <code>int[] rev = new int[n];</code> แล้วคัดลอกจากหลังมาหน้า</li><li><b>สลับเฉพาะครึ่งแรกหรือครึ่งหลัง</b></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ข้อผิดพลาดร้ายแรงที่สุด:</b> เขียนลูป <code>for (int i = 0; i < arr.length; i++)</code> โดยไม่มีเงื่อนไขหยุดที่กึ่งกลาง ลูปจะทำการสลับตัวเลขไปจนถึงตัวสุดท้าย ส่งผลให้ตัวเลขถูกสลับไปแล้วถูกสลับกลับคืนมาเป็น Array หน้าตาเหมือนเดิมก่อนสลับ!
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+    <div class="page-break"></div>
+    <h1 class="ch-header">บทที่ 6: 2D Arrays / Matrices (Lab 11B — 5 Exercises)</h1>
+    <p><b>ภาพรวมเนื้อหา:</b> พิกัด [row][col], การอ่าน Matrix ผ่าน Scanner, การหาผลรวมรายแถว, ค่าสูงสุดรายแถว, และ 2D Early Exit Search</p>
+    
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 32: Ex 1: โครงสร้างหน่วยความจำและระบบพิกัดของ 2D Array (Matrix Coordinate [row][col])</h3>
+          <div>
+            <span class="badge badge-cat">2D Array Structure & Traversal</span>
+            <span class="badge badge-file">Lab11B_2DArrays/TraceMatrix.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            เข้าใจการจัดเก็บข้อมูลแบบ 2 มิติ (Array of Arrays) ในภาษา Java, การอ่านจำนวนแถวด้วย <code>m.length</code>, การอ่านจำนวนคอลัมน์ด้วย <code>m[0].length</code>, และการเข้าถึงพิกัด <code>matrix[row][col]</code>
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (TraceMatrix.java):</b>
+          <div class="code-container">public class TraceMatrix {
+    public static void main(String[] args) {
+        int[][] m = { { 2, 4, 6 },
+                { 1, 3, 5 },
+                { 7, 0, 9 } };
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                System.out.print(m[row][col] + &quot; &quot;);
+            }
+            System.out.println();
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>สร้าง 2D Array ขนาด 3 แถว 4 คอลัมน์: <code>int[][] m = new int[3][4];</code></li><li>ทำความเข้าใจขนาด:<br>- <code>m.length</code> คือจำนวนแถว (Rows = 3)<br>- <code>m[r].length</code> คือจำนวนคอลัมน์ของแถวที่ r (Cols = 4)</li><li>กำหนดค่าให้สมาชิกในพิกัด: <code>m[row][col] = row * 10 + col;</code></li><li>วนลูปอ่านค่าแบบ Nested Loop:<br>1. ลูปนอก (Outer): วนตามแถว <code>for (int r = 0; r < m.length; r++)</code><br>2. ลูปใน (Inner): วนตามคอลัมน์ <code>for (int c = 0; c < m[r].length; c++)</code><br>3. พิมพ์สมาชิกในแถวเดียวกันคั่นด้วยช่องว่าง<br>4. ขึ้นบรรทัดใหม่หลังจบคอลัมน์ของแต่ละแถว <code>System.out.println();</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">พิกัดและการจัดเก็บข้อมูลในตาราง (3 แถว x 4 คอลัมน์):
+พิกัด:        Col 0    Col 1    Col 2    Col 3
+Row 0:     m[0][0]  m[0][1]  m[0][2]  m[0][3]
+Row 1:     m[1][0]  m[1][1]  m[1][2]  m[1][3]
+Row 2:     m[2][0]  m[2][1]  m[2][2]  m[2][3]
+
+หน้าจอ Output:
+  0   1   2   3
+ 10  11  12  13
+ 20  21  22  23</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>สร้างพร้อมกำหนดค่าทันที (Matrix Literal):</b><br><code>int[][] m = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };</code></li><li><b>เมทริกซ์แบบ Jagged/Ragged Array:</b> แต่ละแถวมีความยาวคอลัมน์ไม่เท่ากันได้ เช่น <code>m[0] = new int[2]; m[1] = new int[5];</code></li><li><b>วนลูปแบบคอลัมน์เป็นหลัก (Column-major traversal):</b> สลับลูปให้ col อยู่นอก และ row อยู่ใน</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>สลับพิกัด [col][row]:</b> สับสนระหว่างแถวและคอลัมน์ กฎเหล็กของ Java คือวงเล็บแรกคือ <b>แถว (Row)</b> เสมอ และวงเล็บที่สองคือ <b>คอลัมน์ (Column)</b> เสมอ: <code>matrix[row][col]</code>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 33: Ex 2: การรับค่าเมทริกซ์จากผู้ใช้ และการส่ง Scanner เป็น Parameter</h3>
+          <div>
+            <span class="badge badge-cat">2D Input & Resource Management</span>
+            <span class="badge badge-file">Lab11B_2DArrays/MatrixInput.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างฟังก์ชันรับข้อมูลเมทริกซ์จากผู้ใช้ที่มีขนาด $R \times C$ อย่างเป็นระบบ และฝึกการส่งต่ออ็อบเจกต์ <code>Scanner</code> ผ่านพารามิเตอร์เพื่อจัดการทรัพยากรอย่างถูกต้อง
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (MatrixInput.java):</b>
+          <div class="code-container">import java.util.Scanner;
+
+public class MatrixInput {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(&quot;Enter rows: &quot;);
+        int rows = sc.nextInt();
+        System.out.print(&quot;Enter cols: &quot;);
+        int cols = sc.nextInt();
+        int[][] matrix = readMatrix(sc, rows, cols);
+        System.out.println(&quot;Matrix:&quot;);
+        printMatrix(matrix);
+        sc.close();
+    }
+
+    public static int[][] readMatrix(Scanner sc, int rows, int cols) {
+        int[][] m = new int[rows][cols];
+        for (int r = 0; r &lt; rows; r++)
+            for (int c = 0; c &lt; cols; c++) {
+                System.out.print(&quot;Enter element [&quot; + r + &quot;][&quot; + c + &quot;]: &quot;);
+                m[r][c] = sc.nextInt();
+            }
+        return m;
+    }
+
+    public static void printMatrix(int[][] m) {
+        for (int r = 0; r &lt; m.length; r++) {
+            for (int c = 0; c &lt; m[r].length; c++)
+                System.out.printf(&quot;%-5d&quot;, m[r][c]);
+            System.out.println();
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>ใน <code>main()</code>: รับจำนวนแถวและคอลัมน์ <code>int rows = sc.nextInt(); int cols = sc.nextInt();</code></li><li>ประกาศ Method รับค่า: <code>public static int[][] readMatrix(Scanner sc, int rows, int cols)</code></li><li>ภายใน Method: สร้างเมทริกซ์ <code>int[][] matrix = new int[rows][cols];</code></li><li>วนลูปซ้อนสองชั้นเพื่อรับค่าทีละช่อง:<br><code>for (int r = 0; r < rows; r++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;for (int c = 0; c < cols; c++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print("Enter element [" + r + "][" + c + "]: ");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix[r][c] = sc.nextInt();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></li><li>ส่งเมทริกซ์ที่ได้กลับออกมา: <code>return matrix;</code></li><li>สร้าง Method พิมพ์เมทริกซ์: <code>public static void printMatrix(int[][] matrix)</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ตัวอย่างการป้อนเมทริกซ์ขนาด 2x3:
+Enter rows: 2
+Enter cols: 3
+Enter element [0][0]: 5
+Enter element [0][1]: 8
+Enter element [0][2]: 2
+Enter element [1][0]: 9
+Enter element [1][1]: 4
+Enter element [1][2]: 1
+
+The matrix is:
+5  8  2
+9  4  1</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>สร้างเมทริกซ์แบบสุ่ม (Random Matrix):</b> สุ่มตัวเลข 0 ถึง 99 ใส่ในแต่ละช่องแทนการรับจากคีย์บอร์ด</li><li><b>รับเมทริกซ์จัตุรัส (Square Matrix):</b> รับค่า n เพียงค่าเดียว แล้วสร้างขนาด $N \times N$</li><li><b>แปลงชนิดเป็น double[][]:</b> เพื่อรองรับข้อมูลทศนิยม</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>สร้าง Scanner ซ้ำซ้อน:</b> เขียนคำสั่ง <code>Scanner sc = new Scanner(System.in);</code> ไว้ <i>ภายใน Method</i> <code>readMatrix</code> แทนที่จะรับ Scanner จาก main การทำเช่นนี้ทำให้เกิด Object สิ้นเปลือง และถ้าเผลอสั่ง <code>sc.close()</code> ใน method จะทำให้ System.in ทั้งหมดของโปรแกรมถูกปิดตายถาวร
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 34: Ex 3: การคำนวณผลรวมทั้งตารางและผลรวมรายแถว (Total Sum, Row Sums & Average)</h3>
+          <div>
+            <span class="badge badge-cat">Matrix Reduction & Row Accumulation</span>
+            <span class="badge badge-file">Lab11B_2DArrays/MatrixSum.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            ฝึกการคำนวณผลรวมทั้งหมดของเมทริกซ์ (Grand Total), ค่าเฉลี่ยรวมทุกช่อง, และการคำนวณผลรวมแยกเฉพาะแต่ละแถว (Row Sums)
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (MatrixSum.java):</b>
+          <div class="code-container">// SE101 - Lab 11B: Exercise 3 (MatrixSum.java)
+import java.util.Scanner;
+
+public class MatrixSum {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(&quot;Enter rows: &quot;);
+        int rows = scanner.nextInt();
+        System.out.print(&quot;Enter cols: &quot;);
+        int cols = scanner.nextInt();
+
+        int[][] matrix = readMatrix(rows, cols);
+
+        System.out.println(&quot;\nMatrix:&quot;);
+        printMatrix(matrix);
+
+        int total = sum(matrix);
+        double avg = (double) total / (rows * cols);
+
+        System.out.println(&quot;\nSum of all elements = &quot; + total);
+        System.out.printf(&quot;Average             = %.2f%n&quot;, avg);
+
+        scanner.close();
+    }
+
+    public static int[][] readMatrix(int rows, int cols) {
+        Scanner scanner = new Scanner(System.in);
+        int[][] m = new int[rows][cols];
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                System.out.print(&quot;Enter element [&quot; + row + &quot;][&quot; + col + &quot;]: &quot;);
+                m[row][col] = scanner.nextInt();
+            }
+        }
+        return m;
+    }
+
+    public static void printMatrix(int[][] m) {
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                System.out.printf(&quot;%-5d&quot;, m[row][col]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static int sum(int[][] m) {
+        int total = 0;
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                total += m[row][col];
+            }
+        }
+        return total;
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>มีเมทริกซ์ขนาด $R \times C$</li><li><b>คำนวณผลรวมทั้งหมด:</b> สร้างตัวแปร <code>totalSum = 0;</code> วนลูปตรวจทุกช่อง <code>totalSum += m[r][c];</code></li><li><b>คำนวณค่าเฉลี่ยทั้งหมด:</b> สมาชิกทั้งหมดมี $R \times C$ ตัว ดังนั้น:<br><code>double avg = (double) totalSum / (m.length * m[0].length);</code></li><li><b>คำนวณผลรวมรายแถว:</b><br>- ในลูปนอก (แต่ก่อนเริ่มลูปใน): ประกาศ <code>int rowSum = 0;</code><br>- ในลูปใน: บวกสะสม <code>rowSum += m[r][c];</code><br>- หลังจบลูปใน: พิมพ์ผลรวมของแถวนั้นออกมาทันที แล้วรอบถัดไปตัวแปร rowSum จะถูกรีเซ็ตเป็น 0 ใหม่อัตโนมัติ</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">เมทริกซ์ตัวอย่าง (2 แถว x 3 คอลัมน์):
+[ 1, 2, 3 ] -&gt; Row 0 Sum = 1 + 2 + 3 = 6
+[ 4, 5, 6 ] -&gt; Row 1 Sum = 4 + 5 + 6 = 15
+
+ผลรวมทั้งหมด (Grand Total) = 6 + 15 = 21
+จำนวนสมาชิกทั้งหมด = 2 x 3 = 6 ตัว
+ค่าเฉลี่ยทั้งหมด (Average) = 21.0 / 6 = 3.50</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>คำนวณผลรวมรายคอลัมน์ (Column Sums):</b> สลับลูปเอา col ขึ้นก่อน แล้วสะสม <code>colSum += m[r][c]</code></li><li><b>ผลรวมเส้นทแยงมุมหลัก (Trace of Matrix):</b> ในเมทริกซ์จัตุรัส วนลูปเดียว <code>for (int i=0; i<n; i++) diagSum += m[i][i];</code></li><li><b>หาแถวที่มีผลรวมมากที่สุด (ArgMax Row):</b> เก็บ <code>maxRowIndex</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ประกาศตัวแปรสะสมผลรวมแถวผิดที่:</b> ประกาศ <code>int rowSum = 0;</code> ไว้นอกลูปนอก ส่งผลให้ผลรวมของแถวที่ 0 ถูกนำไปบวกสะสมรวมต่อในแถวที่ 1 ทำให้ผลรวมแถวหลังๆ มีค่าเกินจริงเสมอ ตัวแปรสะสมรายแถวต้องประกาศ <b>อยู่ภายในลูปนอกเหนือลูปใน</b> เสมอ
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 35: Ex 4: การหาค่ามากที่สุดของแต่ละแถว (Maximum Element per Row)</h3>
+          <div>
+            <span class="badge badge-cat">Row-wise Search & Optimization</span>
+            <span class="badge badge-file">Lab11B_2DArrays/MatrixRowMax.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างอัลกอริทึมค้นหาค่าสูงสุดแยกตามแต่ละแถวของเมทริกซ์ โดยรีเซ็ตค่าเริ่มต้นสำหรับแต่ละแถวอย่างถูกต้อง
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (MatrixRowMax.java):</b>
+          <div class="code-container">// SE101 - Lab 11B: Exercise 4 (MatrixRowMax.java)
+import java.util.Scanner;
+
+public class MatrixRowMax {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(&quot;Enter rows: &quot;);
+        int rows = scanner.nextInt();
+        System.out.print(&quot;Enter cols: &quot;);
+        int cols = scanner.nextInt();
+
+        int[][] matrix = readMatrix(rows, cols);
+
+        System.out.println(&quot;\nMatrix:&quot;);
+        printMatrix(matrix);
+
+        System.out.println();
+        findRowMax(matrix);
+
+        scanner.close();
+    }
+
+    public static int[][] readMatrix(int rows, int cols) {
+        Scanner scanner = new Scanner(System.in);
+        int[][] m = new int[rows][cols];
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                System.out.print(&quot;Enter element [&quot; + row + &quot;][&quot; + col + &quot;]: &quot;);
+                m[row][col] = scanner.nextInt();
+            }
+        }
+        return m;
+    }
+
+    public static void printMatrix(int[][] m) {
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                System.out.printf(&quot;%-5d&quot;, m[row][col]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void findRowMax(int[][] m) {
+        for (int row = 0; row &lt; m.length; row++) {
+            int maxInRow = m[row][0];
+            for (int col = 1; col &lt; m[row].length; col++) {
+                if (m[row][col] &gt; maxInRow) {
+                    maxInRow = m[row][col];
+                }
+            }
+            System.out.println(&quot;Max in row &quot; + row + &quot; = &quot; + maxInRow);
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>วนลูปตามแถว: <code>for (int r = 0; r < m.length; r++)</code></li><li><b>กำหนดค่าเริ่มต้น Max ของแถวนั้น:</b><br><code>int rowMax = m[r][0];</code> (ต้องใช้สมาชิกคอลัมน์แรกของแถวนั้นๆ เสมอ)</li><li>วนลูปตรวจสอบคอลัมน์ที่เหลือ (เริ่มที่ c = 1):<br><code>for (int c = 1; c < m[r].length; c++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;if (m[r][c] > rowMax) rowMax = m[r][c];<br>}</code></li><li>แสดงผลลัพธ์ค่าสูงสุดของแถว r</li><li>วนไปทำแถวถัดไปจนครบทุกแถว</li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">เมทริกซ์ขนาด 3x3:
+แถว 0: [ 12,  45,  33 ] -&gt; ค่าสูงสุดคือ 45
+แถว 1: [  8,  99,  14 ] -&gt; ค่าสูงสุดคือ 99
+แถว 2: [ 70,  55,  62 ] -&gt; ค่าสูงสุดคือ 70
+
+หน้าจอ Output:
+Max in row 0 = 45
+Max in row 1 = 99
+Max in row 2 = 70</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>หาค่าน้อยที่สุดของแต่ละแถว (Row Min):</b> เปลี่ยนเป็น <code>if (m[r][c] < rowMin) rowMin = m[r][c];</code></li><li><b>หาค่ามากที่สุดของทั้งเมทริกซ์ (Global Max):</b> ประกาศตัวแปร <code>globalMax = m[0][0];</code> พร้อมเก็บพิกัด <code>maxR = 0, maxC = 0;</code></li><li><b>คืนค่าเป็น 1D Array ของค่าสูงสุด:</b> <code>public static int[] getRowMaxes(int[][] m)</code></li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            ตั้งค่าเริ่มต้น <code>int rowMax = 0;</code> หากในแถวนั้นมีเฉพาะตัวเลขติดลบทั้งหมด เช่น [-10, -50, -25] โปรแกรมจะตอบว่าค่าสูงสุดคือ 0 ซึ่งไม่มีอยู่จริงในแถวนั้น! ต้องตั้ง <code>rowMax = m[r][0]</code> เสมอ
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+        <div class="no-break">
+          <h3 class="file-title">ข้อที่ 36: Ex 5: การค้นหาข้อมูลในเมทริกซ์ 2 มิติ แบบหยุดลูปซ้อนทันที (2D Early Exit Search)</h3>
+          <div>
+            <span class="badge badge-cat">2D Search & Clean Early Exit</span>
+            <span class="badge badge-file">Lab11B_2DArrays/MatrixSearch.java</span>
+          </div>
+
+          <div class="card card-logic" style="margin-top: 10px;">
+            <div class="card-header">🎯 จุดประสงค์และเป้าหมายของโปรแกรม</div>
+            สร้างอัลกอริทึมค้นหาค่าเป้าหมาย (Target) ในเมทริกซ์ 2 มิติ และเทคนิคการหยุดการทำงานของลูปซ้อน 2 ชั้นทันทีที่พบเป้าหมายโดยไม่ใช้คำสั่ง break ซ้อนที่ซับซ้อน
+          </div>
+
+          <b>ซอร์สโค้ดฉบับสมบูรณ์ (MatrixSearch.java):</b>
+          <div class="code-container">// SE101 - Lab 11B: Exercise 5 (MatrixSearch.java)
+import java.util.Scanner;
+
+public class MatrixSearch {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print(&quot;Enter rows: &quot;);
+        int rows = scanner.nextInt();
+        System.out.print(&quot;Enter cols: &quot;);
+        int cols = scanner.nextInt();
+
+        int[][] matrix = readMatrix(rows, cols);
+
+        System.out.println(&quot;\nMatrix:&quot;);
+        printMatrix(matrix);
+
+        System.out.print(&quot;\nEnter target: &quot;);
+        int target = scanner.nextInt();
+
+        System.out.println(&quot;\n--- Search with Early Exit ---&quot;);
+        search(matrix, target);
+
+        System.out.println(&quot;\n--- Extension: Search All Occurrences ---&quot;);
+        searchAll(matrix, target);
+
+        scanner.close();
+    }
+
+    public static int[][] readMatrix(int rows, int cols) {
+        Scanner scanner = new Scanner(System.in);
+        int[][] m = new int[rows][cols];
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                System.out.print(&quot;Enter element [&quot; + row + &quot;][&quot; + col + &quot;]: &quot;);
+                m[row][col] = scanner.nextInt();
+            }
+        }
+        return m;
+    }
+
+    public static void printMatrix(int[][] m) {
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                System.out.printf(&quot;%-5d&quot;, m[row][col]);
+            }
+            System.out.println();
+        }
+    }
+
+    // Standard search with early exit
+    public static void search(int[][] m, int target) {
+        boolean found = false;
+        for (int row = 0; row &lt; m.length &amp;&amp; !found; row++) {
+            for (int col = 0; col &lt; m[row].length &amp;&amp; !found; col++) {
+                if (m[row][col] == target) {
+                    System.out.println(&quot;Found &quot; + target + &quot; at [&quot; + row + &quot;][&quot; + col + &quot;]&quot;);
+                    found = true;
+                }
+            }
+        }
+        if (!found) {
+            System.out.println(target + &quot; not found.&quot;);
+        }
+    }
+
+    // Extension: find and print ALL occurrences
+    public static void searchAll(int[][] m, int target) {
+        int occurrences = 0;
+        for (int row = 0; row &lt; m.length; row++) {
+            for (int col = 0; col &lt; m[row].length; col++) {
+                if (m[row][col] == target) {
+                    System.out.println(&quot;Found &quot; + target + &quot; at [&quot; + row + &quot;][&quot; + col + &quot;]&quot;);
+                    occurrences++;
+                }
+            }
+        }
+        if (occurrences == 0) {
+            System.out.println(target + &quot; not found.&quot;);
+        } else {
+            System.out.println(&quot;Total occurrences found: &quot; + occurrences);
+        }
+    }
+}</div>
+
+          <div class="card card-logic">
+            <div class="card-header">⚙️ หลักการทำงานอย่างละเอียด (Step-by-Step Logic)</div>
+            <ol>
+        <li>รับค่าเป้าหมายที่ต้องการค้นหา <code>int target = sc.nextInt();</code></li><li>สร้างตัวแปรสถานะ: <code>boolean found = false;</code></li><li><b>เทคนิค Early Exit ใน Nested Loops:</b> ใส่เงื่อนไข <code>&& !found</code> ไว้ในหัวลูปทั้งสองชั้น:<br><code>for (int r = 0; r < m.length && !found; r++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;for (int c = 0; c < m[r].length && !found; c++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (m[r][c] == target) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.printf("Found %d at row %d, column %d%n", target, r, c);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;found = true; // หยุดทั้งลูปในและลูปนอกทันที!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}</code></li><li>หลังจบลูป: ตรวจสอบ <code>if (!found) System.out.println(target + " not found in matrix.");</code></li>
+            </ol>
+          </div>
+
+          <div class="card card-trace">
+            <div class="card-header">📊 ตัวอย่างการทำงานและการ Trace ตัวแปร (Trace Table & Walkthrough)</div>
+            <div class="trace-box">ค้นหา target = 42 ในเมทริกซ์:
+[  5, 12, 19 ]
+[ 28, 42, 55 ]
+[ 63, 71, 89 ]
+
+การทำงาน:
+- แถว 0: ตรวจ 5, 12, 19 -&gt; ไม่ตรง
+- แถว 1: ตรวจ 28 -&gt; ไม่ตรง
+          ตรวจ 42 -&gt; พบแล้ว! พิมพ์พิกัด [1][1] และตั้ง found = true
+- ลูปในรอบถัดไป: ตรวจเงื่อนไข c &lt; 3 &amp;&amp; !found -&gt; !found เป็น false -&gt; หลุดลูปในทันที
+- ลูปนอกรอบถัดไป: ตรวจเงื่อนไข r &lt; 3 &amp;&amp; !found -&gt; !found เป็น false -&gt; หลุดลูปนอกทันที!
+
+ผลลัพธ์: พบข้อมูลทันทีโดยไม่ต้องตรวจเลข 55, 63, 71, 89 ที่เหลือ</div>
+          </div>
+
+          <div class="card card-variations">
+            <div class="card-header">🔄 แบบต่างๆ และรูปแบบที่อาจเจอในข้อสอบ (Variations & Exam Tweaks)</div>
+            <ul>
+        <li><b>ใช้ Labeled Break:</b> <code>searchLoop: for (...) { for (...) { if (...) { found = true; break searchLoop; } } }</code></li><li><b>แยกเป็น Method ค้นหาและ return พิกัด:</b><br><code>public static int[] find(int[][] m, int target) { for(...) for(...) if(m[r][c]==target) return new int[]{r, c}; return null; }</code> (วิธีนี้สะอาดที่สุด เพราะ return สั่งออกจากทั้งสองลูปในทันที)</li><li><b>นับจำนวนความถี่ที่พบทั้งหมด:</b> ตัด early exit ออก แล้วใช้ตัวแปรนับแทน</li>
+            </ul>
+          </div>
+
+          <div class="card card-pitfalls">
+            <div class="card-header">⚠️ จุดที่ต้องระวัง & กับดักข้อสอบ (Common Mistakes & Traps)</div>
+            <b>ใช้คำสั่ง break ตัวเดียวโดดๆ:</b> คำสั่ง <code>break;</code> ใน Java จะกระโดดออกจากลูปที่อยู่ใกล้ที่สุดเพียงชั้นเดียว (ลูปคอลัมน์) แต่ <i>ลูปแถวยังคงทำงานต่อไป</i> ทำให้โปรแกรมยังคงวนค้นหาแถวถัดไปเรื่อยๆ จนจบเมทริกซ์ หากต้องการให้ออกทั้งหมดต้องใช้เทคนิค <code>&& !found</code>, Labeled Break หรือแยกเป็น Method แล้วใช้ <code>return</code>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+        
+<div class="page-break"></div>
+<h1 class="ch-header">บทที่ 7: วิเคราะห์และเฉลยข้อสอบตัวอย่าง Final Lab Exam (Model Solutions)</h1>
+<p>ข้อสอบ Final Lab Exam (จาก Example-FLabExam.pdf) ประกอบด้วยโจทย์มาตรฐาน 3 ข้อ ครอบคลุม Loops, Methods และ Arrays อย่างครบถ้วน</p>
+
+    <div class="no-break">
+      <h2 class="ch-sub">ข้อสอบที่ 1: Loops & Statistics — Temperature Converter with Statistics</h2>
+      <p><b>โจทย์ข้อสอบ:</b> โปรแกรมแปลงอุณหภูมิเซลเซียสเป็นฟาเรนไฮต์ พร้อมระบุหมวดหมู่ความร้อน ทำงานซ้ำจนกว่าผู้ใช้จะป้อนค่า -999 ตอนจบให้แสดงจำนวนครั้งที่แปลงและค่าฟาเรนไฮต์ที่สูงที่สุด</p>
+      <div class="card card-tip"><div class="card-header">📐 สูตรและเงื่อนไข</div>F = (9.0 / 5.0) * C + 32<br>หมวดหมู่: F < 50 (Cold), 50 <= F <= 86 (Comfortable), F > 86 (Hot)</div>
+      <b>Model Solution ที่ถูกต้องและกระชับที่สุดในห้องสอบ:</b>
+      <div class="code-container">import java.util.Scanner;
+
+public class TempExam {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int count = 0;
+        double highestF = Double.NEGATIVE_INFINITY; // เริ่มต้นที่ค่าน้อยสุด
+
+        while (true) {
+            System.out.print(&quot;Enter Celsius (-999 to quit): &quot;);
+            double c = sc.nextDouble();
+            if (c == -999) { // 1. ตรวจสอบ Sentinel ก่อนประมวลผลเสมอ!
+                break;
+            }
+
+            double f = (9.0 / 5) * c + 32;
+            String category;
+            if (f &lt; 50) {
+                category = &quot;Cold&quot;;
+            } else if (f &lt;= 86) {
+                category = &quot;Comfortable&quot;;
+            } else {
+                category = &quot;Hot&quot;;
+            }
+
+            System.out.printf(&quot;%.1f °C = %.2f °F → %s%n&quot;, c, f, category);
+            count++;
+            if (f &gt; highestF) {
+                highestF = f;
+            }
+        }
+
+        System.out.println(&quot;----------------------------&quot;);
+        System.out.println(&quot;Total conversions : &quot; + count);
+        if (count &gt; 0) {
+            System.out.printf(&quot;Highest Fahrenheit: %.2f °F%n&quot;, highestF);
+        } else {
+            System.out.println(&quot;No data entered.&quot;);
+        }
+        sc.close();
+    }
+}</div>
+
+      <div class="card card-logic">
+        <div class="card-header">🔍 วิเคราะห์เจาะลึกตรรกะในห้องสอบ</div>
+        <ul>
+    <li>ใช้ <code>while (true)</code> เพื่อรับค่าวนซ้ำไม่จำกัดรอบ</li><li>เช็ค <code>c == -999</code> ทันทีหลังรับค่า ถ้าตรงเงื่อนไขสั่ง <code>break;</code> ทันทีเพื่อไม่ให้ -999 ถูกนับและนำไปหาค่า Max</li><li>ใช้ <code>(9.0 / 5)</code> เพื่อป้องกัน Integer Division</li><li>ใช้ตัวแปร <code>highestF = Double.NEGATIVE_INFINITY</code> หรือรับค่าตัวแรกมาตั้งต้น เพื่อรองรับอุณหภูมิที่ติดลบได้</li><li>จัดรูปแบบทศนิยมด้วย <code>%.1f</code> และ <code>%.2f</code> ตามที่โจทย์กำหนด</li></ul></div><div class="card card-variations"><div class="card-header">🔄 รูปแบบพลิกแพลงที่เป็นไปได้ในห้องสอบ</div><ul><li><b>เปลี่ยน Sentinel:</b> โจทย์อาจเปลี่ยนจาก -999 เป็น 0 หรือค่าลบใดๆ ก็ตาม</li><li><b>เพิ่มตัวสถิติ:</b> โจทย์อาจสั่งให้หาอุณหภูมิต่ำสุด (Lowest) หรืออุณหภูมิเฉลี่ย (Average Fahrenheit)</li><li><b>ใช้ do-while:</b> ปรับโครงสร้างลูปให้ทำก่อนแล้วค่อยเช็คเงื่อนไข</li></ul></div></div><hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+    <div class="no-break">
+      <h2 class="ch-sub">ข้อสอบที่ 2: Methods & Input Validation — Shipping Cost Calculator</h2>
+      <p><b>โจทย์ข้อสอบ:</b> สร้าง Method <code>shippingCost(double weight, String type)</code> เพื่อคำนวณค่าจัดส่งพัสดุตามน้ำหนักและปลายทาง (D: ในประเทศ 30 บ./กก. ขั้นต่ำ 50 บ., I: ต่างประเทศ 80 บ./กก. ขั้นต่ำ 150 บ.) ทำซ้ำจนกว่า weight = 0</p>
+      <div class="card card-tip"><div class="card-header">📐 สูตรและเงื่อนไข</div>D: weight * 30 (min 50)<br>I: weight * 80 (min 150)</div>
+      <b>Model Solution ที่ถูกต้องและกระชับที่สุดในห้องสอบ:</b>
+      <div class="code-container">import java.util.Scanner;
+
+public class ShippingExam {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.print(&quot;Enter weight (kg), 0 to quit: &quot;);
+            double weight = sc.nextDouble();
+            if (weight == 0) {
+                System.out.println(&quot;Goodbye!&quot;);
+                break;
+            }
+            if (weight &lt; 0) {
+                System.out.println(&quot;Invalid weight.&quot;);
+                continue; // ข้ามรอบนี้ไปรับน้ำหนักใหม่
+            }
+
+            System.out.print(&quot;Destination (D/I): &quot;);
+            String type = sc.next().toUpperCase(); // ปรับเป็นพิมพ์ใหญ่
+
+            double cost = shippingCost(weight, type);
+            if (cost == -1) {
+                System.out.println(&quot;Invalid destination type.&quot;);
+                continue;
+            }
+
+            // ตรวจสอบว่าใช้อัตราขั้นต่ำหรือไม่เพื่อพิมพ์ข้อความ
+            double raw = type.equals(&quot;D&quot;) ? weight * 30 : weight * 80;
+            double min = type.equals(&quot;D&quot;) ? 50 : 150;
+            if (raw &lt; min) {
+                System.out.printf(&quot;Shipping cost = %.2f baht (minimum applied)%n&quot;, cost);
+            } else {
+                System.out.printf(&quot;Shipping cost = %.2f baht%n&quot;, cost);
+            }
+        }
+        sc.close();
+    }
+
+    public static double shippingCost(double weight, String type) {
+        if (type.equals(&quot;D&quot;)) {
+            double cost = weight * 30;
+            return (cost &lt; 50) ? 50 : cost;
+        } else if (type.equals(&quot;I&quot;)) {
+            double cost = weight * 80;
+            return (cost &lt; 150) ? 150 : cost;
+        }
+        return -1; // ประเภทปลายทางไม่ถูกต้อง
+    }
+}</div>
+
+      <div class="card card-logic">
+        <div class="card-header">🔍 วิเคราะห์เจาะลึกตรรกะในห้องสอบ</div>
+        <ul>
+    <li>Method <code>shippingCost</code> รับ parameter 2 ตัวและ return ค่า <code>double</code></li><li>เปรียบเทียบ String ด้วย <code>.equals("D")</code> ห้ามใช้ <code>==</code></li><li>ใช้ <code>weight < 0</code> เช็ค validation แล้วใช้ <code>continue;</code> ข้ามรอบการทำงาน</li><li>ใช้ Ternary Operator คำนวณค่าธรรมเนียมขั้นต่ำอย่างกระชับ</li><li>ลูปใน <code>main()</code> วนซ้ำจนกว่า weight จะเท่ากับ 0</li></ul></div><div class="card card-variations"><div class="card-header">🔄 รูปแบบพลิกแพลงที่เป็นไปได้ในห้องสอบ</div><ul><li><b>เพิ่มประเภทขนส่ง:</b> เช่น E: Express กก.ละ 120 บ. ขั้นต่ำ 200 บ.</li><li><b>ให้ส่วนลด:</b> ถ้าน้ำหนักเกิน 10 กก. ลดค่าส่ง 10%</li><li><b>ใช้ char แทน String:</b> <code>char type = sc.next().toUpperCase().charAt(0);</code></li></ul></div></div><hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+    <div class="no-break">
+      <h2 class="ch-sub">ข้อสอบที่ 3: 1D Array & Comprehensive Report — Weekly Rainfall Report</h2>
+      <p><b>โจทย์ข้อสอบ:</b> รับปริมาณน้ำฝน 7 วันเก็บใน Array ขนาด 7 แล้วแสดง: 1. ปริมาณฝนแต่ละวัน 2. ผลรวม 3. ค่าเฉลี่ย 4. จำนวนวันที่ฝนตกเกินค่าเฉลี่ย (พร้อมระบุชื่อวัน) 5. วันที่ฝนตกหนักที่สุด (Day 1 = index 0)</p>
+      <div class="card card-tip"><div class="card-header">📐 สูตรและเงื่อนไข</div>Avg = Total / 7.0<br>Above Avg: rain[i] > avg<br>Max Day: index of max + 1</div>
+      <b>Model Solution ที่ถูกต้องและกระชับที่สุดในห้องสอบ:</b>
+      <div class="code-container">import java.util.Scanner;
+
+public class RainfallExam {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] rain = new int[7];
+        int total = 0;
+
+        for (int i = 0; i &lt; rain.length; i++) {
+            System.out.print(&quot;Enter rainfall for day &quot; + (i + 1) + &quot;: &quot;);
+            rain[i] = sc.nextInt();
+            total += rain[i];
+        }
+
+        System.out.println(&quot;\n--- Weekly Rainfall Report ---&quot;);
+        for (int i = 0; i &lt; rain.length; i++) {
+            System.out.println(&quot;Day &quot; + (i + 1) + &quot;: &quot; + rain[i] + &quot; mm&quot;);
+        }
+
+        double avg = (double) total / rain.length;
+        System.out.println(&quot;------------------------------&quot;);
+        System.out.println(&quot;Total rainfall : &quot; + total + &quot; mm&quot;);
+        System.out.printf(&quot;Average        : %.2f mm%n&quot;, avg);
+
+        // หาจำนวนวันที่ฝนตกมากกว่าค่าเฉลี่ย
+        int aboveCount = 0;
+        String daysAbove = &quot;&quot;;
+        for (int i = 0; i &lt; rain.length; i++) {
+            if (rain[i] &gt; avg) {
+                aboveCount++;
+                if (!daysAbove.isEmpty()) {
+                    daysAbove += &quot;, &quot;;
+                }
+                daysAbove += &quot;Day &quot; + (i + 1);
+            }
+        }
+        System.out.println(&quot;Days above average: &quot; + aboveCount + &quot; (&quot; + daysAbove + &quot;)&quot;);
+
+        // หาตำแหน่งวันที่ฝนตกมากที่สุด (ArgMax)
+        int maxIdx = 0;
+        for (int i = 1; i &lt; rain.length; i++) {
+            if (rain[i] &gt; rain[maxIdx]) {
+                maxIdx = i;
+            }
+        }
+        System.out.println(&quot;Highest rainfall : Day &quot; + (maxIdx + 1) + &quot; (&quot; + rain[maxIdx] + &quot; mm)&quot;);
+        sc.close();
+    }
+}</div>
+
+      <div class="card card-logic">
+        <div class="card-header">🔍 วิเคราะห์เจาะลึกตรรกะในห้องสอบ</div>
+        <ul>
+    <li>สร้าง Array <code>int[] rain = new int[7];</code></li><li>คำนวณผลรวมสะสม <code>total += rain[i]</code> ขณะที่รับ input ช่วยลดลูป</li><li>คำนวณค่าเฉลี่ยโดยแปลง <code>(double) total / rain.length</code></li><li>ลูปครั้งที่สองกรองเงื่อนไข <code>rain[i] > avg</code> และต่อ String ชื่อวันด้วยคอมมา</li><li>เทคนิค <b>ArgMax</b>: เก็บ index ของค่าสูงสุด <code>maxIdx</code> แทนการเก็บเฉพาะค่าตัวเลข เพื่อให้สามารถอ้างอิงกลับมาเป็นหมายเลขวันได้ด้วย <code>maxIdx + 1</code></li></ul></div><div class="card card-variations"><div class="card-header">🔄 รูปแบบพลิกแพลงที่เป็นไปได้ในห้องสอบ</div><ul><li><b>หาทั้ง Min และ Max:</b> วันที่ฝนตกน้อยที่สุด และวันที่ฝนตกมากที่สุด</li><li><b>รับขนาดจากผู้ใช้:</b> เปลี่ยนจาก 7 วัน เป็นให้ผู้ใช้ป้อน <code>int n = sc.nextInt();</code></li><li><b>จัดกลุ่มเป็น Method:</b> แยก <code>calculateTotal</code>, <code>findMaxDay</code> ออกเป็นฟังก์ชันย่อย</li></ul></div></div><hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 25px 0;">
+<div class="page-break"></div>
+<h1 class="ch-header">บทที่ 8: Top 10 ข้อผิดพลาดร้ายแรงในห้องสอบ (Fatal Exam Pitfalls)</h1>
+<p>ข้อผิดพลาด 10 ประการที่ทำให้นักศึกษาถูกหักคะแนนมากที่สุดจากการสอบคอมโปร Java</p>
+
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 1: Integer Division (การหารจำนวนเต็มตัดเศษ)</div>
+      <p style="margin: 4px 0;">เมื่อจำนวนเต็มหารกับจำนวนเต็ม Java จะตัดเศษทิ้งก่อนนำไปเก็บในตัวแปร double เสมอ ต้อง cast ตัวใดตัวหนึ่งเป็น double ก่อน</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">int sum = 25, n = 4;
+double avg = sum / n; // ได้ 6.0 ไม่ใช่ 6.25!</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">double avg = (double) sum / n; // ได้ 6.25 ถูกต้อง</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 2: ArrayIndexOutOfBoundsException (Index เกินขนาด Array)</div>
+      <p style="margin: 4px 0;">Array ขนาด 5 จะมี Index ตั้งแต่ 0 ถึง 4 เท่านั้น การใช้ <= arr.length จะทำให้โปรแกรมหยุดทำงานกะทันหัน</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">int[] arr = new int[5];
+for (int i = 0; i &lt;= arr.length; i++) { ... } // พังที่รอบสุดท้าย!</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">for (int i = 0; i &lt; arr.length; i++) { ... } // ถูกต้องเสมอ</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 3: Sentinel Value เช็คช้ากว่าการประมวลผล</div>
+      <p style="margin: 4px 0;">Sentinel Value มีไว้เพื่อบอกให้หยุดโปรแกรม ไม่ใช่ข้อมูลจริง ต้องตรวจสอบและ break ก่อนนำไปคำนวณ</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">while (true) {
+    int val = sc.nextInt();
+    sum += val; // พลาด! ค่า -999 ถูกนำไปบวกด้วย
+    if (val == -999) break;
+}</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">while (true) {
+    int val = sc.nextInt();
+    if (val == -999) break; // เช็คก่อนเสมอ!
+    sum += val;
+}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 4: กำหนดค่าเริ่มต้น Min/Max เป็นศูนย์</div>
+      <p style="margin: 4px 0;">การตั้งค่า min=0 หรือ max=0 จะล้มเหลวทันทีเมื่อข้อมูลทั้งหมดเป็นบวกหรือติดลบทั้งหมด</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">int min = 0; // ถ้าข้อมูลใน array มีแต่เลขบวก [10, 25, 40] min จะคงเป็น 0 ตลอดไป!</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">int min = arr[0]; // กำหนดค่าเริ่มต้นจากสมาชิกตัวแรกของ Array เสมอ</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 5: ใช้เครื่องหมาย ^ แทนการยกกำลัง</div>
+      <p style="margin: 4px 0;">Java ไม่มีตัวดำเนินการยกกำลังในระดับ Syntax เครื่องหมาย ^ คือ XOR ต้องใช้ฟังก์ชัน Math.pow() เสมอ</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">int res = 2 ^ 3; // ใน Java จะคำนวณ Bitwise XOR ได้ผลลัพธ์คือ 1</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">double res = Math.pow(2, 3); // ได้ 8.0 ถูกต้อง</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 6: เปรียบเทียบ String ด้วยเครื่องหมาย ==</div>
+      <p style="margin: 4px 0;">String เป็น Object ใน Java เครื่องหมาย == จะเทียบตำแหน่งหน่วยความจำ ต้องใช้ .equals() หรือ .equalsIgnoreCase() เท่านั้น</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">if (type == &quot;D&quot;) { ... } // เปรียบเทียบ Memory Reference อาจให้ผลลัพธ์เป็น false</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">if (type.equals(&quot;D&quot;)) { ... } // เปรียบเทียบเนื้อหาตัวอักษร</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 7: ใส่ Semicolon (;) หลังหัว For หรือ While Loop</div>
+      <p style="margin: 4px 0;">เครื่องหมาย ; ท้ายลูปถือเป็นคำสั่งว่าง (Empty statement) ทำให้บล็อกปีกกาด้านล่างไม่ถูกผูกกับลูป</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">for (int i = 0; i &lt; 10; i++); // ลูปทำงานตัวเปล่า 10 รอบ
+{
+    System.out.println(i); // ผิดไวยากรณ์ หรือทำงานรอบเดียว
+}</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">for (int i = 0; i &lt; 10; i++) {
+    System.out.println(i);
+}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 8: สับสนระหว่าง arr.length และ str.length()</div>
+      <p style="margin: 4px 0;">จำง่ายๆ: Array เป็นโครงสร้างข้อมูลใช้ .length (ไม่มีวงเล็บ) ส่วน String เป็น Class ใช้ .length() (มีวงเล็บ)</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">int len = arr.length(); // ผิด! Array length เป็น Attribute ไม่มีวงเล็บ
+int sLen = str.length; // ผิด! String length() เป็น Method มีวงเล็บ</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">int len = arr.length;
+int sLen = str.length();</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 9: Reverse Array วนลูปจนสุดความยาว</div>
+      <p style="margin: 4px 0;">การกลับด้าน Array แบบ In-Place ต้องวนลูปถึงแค่กึ่งกลาง (length / 2) มิฉะนั้นจะสลับกลับคืนสภาพเดิม</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">for (int i = 0; i &lt; arr.length; i++) {
+    // สลับ arr[i] กับ arr[arr.length - 1 - i]
+} // สลับไปแล้วสลับกลับ ได้ array เดิม!</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">for (int i = 0; i &lt; arr.length / 2; i++) {
+    // สลับถึงแค่ครึ่งเดียวของ Array
+}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-break card card-pitfalls" style="margin-bottom: 15px;">
+      <div class="card-header">🔥 อันดับที่ 10: สร้าง Scanner ซ้ำซ้อนภายใน Method ย่อย</div>
+      <p style="margin: 4px 0;">การสร้าง Scanner(System.in) ซ้ำๆ สิ้นเปลืองหน่วยความจำ และอาจเกิดปัญหา buffer desync ได้ ควรส่ง instance เดียวกันผ่าน parameter</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px;">
+        <div>
+          <b style="color: #dc2626;">❌ เขียนแบบนี้ (ผิด / โดนหักคะแนน):</b>
+          <div class="code-container" style="background: #450a0a; border-color: #991b1b; padding: 6px 10px; margin: 4px 0;">public static void readMatrix(int r, int c) {
+    Scanner sc = new Scanner(System.in); // สร้างใหม่ทุกครั้งที่เรียก
+}</div>
+        </div>
+        <div>
+          <b style="color: #16a34a;">✅ เขียนแบบนี้ (ถูกต้อง / เต็ม 100%):</b>
+          <div class="code-container" style="background: #052e16; border-color: #166534; padding: 6px 10px; margin: 4px 0;">public static void readMatrix(Scanner sc, int r, int c) {
+    // รับ Scanner ตัวเดิมที่ส่งมาจาก main
+}</div>
+        </div>
+      </div>
+    </div>
+    
+<div style="text-align: center; color: #94a3b8; font-size: 8pt; margin-top: 40px; padding-bottom: 20px;">
+  --- SE101 Java Final Lab Exam Master Study Guide | Generated for Astra AI & Exam Pair Programming ---
+</div>
+</body>
+</html>

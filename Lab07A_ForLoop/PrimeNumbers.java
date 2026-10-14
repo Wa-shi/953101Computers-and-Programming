@@ -1,0 +1,28 @@
+public class PrimeNumbers {
+    public static void main(String[] args) {
+        int count = 0;
+        int number = 2;
+
+        while (count < 50) {
+            boolean isPrime = true;
+
+            for (int divisor = 2; divisor <= number / 2; divisor++) {
+                if (number % divisor == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                System.out.print(number + " ");
+                count++;
+
+                if (count % 10 == 0) {
+                    System.out.println();
+                }
+            }
+
+            number++;
+        }
+    }
+}

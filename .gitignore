@@ -1,0 +1,9 @@
+# Compiled Java class files
+*.class
+
+# Log files
+*.log
+
+# Windows thumbnail cache and desktop configs
+Thumbs.db
+Desktop.ini
